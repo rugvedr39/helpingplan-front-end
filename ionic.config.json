@@ -1,0 +1,7 @@
+{
+  "name": "helping_plan",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
