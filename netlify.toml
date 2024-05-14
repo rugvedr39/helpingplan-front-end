@@ -1,3 +1,7 @@
 [build]
 publish = "www"
-command = "npm install -g @ionic/cli cordova && ionic build --prod"
+command = "echo 'No build steps required'"
+[[redirects]]
+from = "/*"
+to = "/index.html"
+status = 200
