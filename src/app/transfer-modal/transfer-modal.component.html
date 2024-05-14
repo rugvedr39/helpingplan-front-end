@@ -1,0 +1,24 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Transfer E-Pin</ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="dismissModal()">Close</ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-item>
+        <ion-label position="floating">Transfer To Username</ion-label>
+        <ion-input [(ngModel)]="refralUsername"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="referralData">
+        <ion-label> Transfer To Name: {{ referralData.name }} </ion-label>
+    </ion-item>
+    <ion-button expand="full" (click)="validateReferral()"
+        >Validate Referral</ion-button
+    >
+    <ion-button expand="full" (click)="transfer()" ngif="this.referralCode"
+        >Transfer Epin</ion-button
+    >
+</ion-content>

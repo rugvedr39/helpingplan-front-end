@@ -1,0 +1,112 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+        <ion-title>Amount Received</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+    <ion-header collapse="condense">
+        <ion-toolbar>
+            <ion-title size="large">Amount Received</ion-title>
+        </ion-toolbar>
+    </ion-header>
+
+    <div class="ion-padding">
+        <ion-card>
+            <ion-card-header>
+                <ion-card-title>Transaction Summary</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+                <p>
+                    Total Help Recived: {{ totalCompletedPayments |
+                    currency:'INR':'symbol':'1.2-2' }}
+                </p>
+                <p>
+                    Total Help Recived Pending: {{ totalInitiatedPayments |
+                    currency:'INR':'symbol':'1.2-2' }}
+                </p>
+            </ion-card-content>
+        </ion-card>
+        <div class="row">
+            <div class="col-md-6 col-lg-4" *ngFor="let transaction of data">
+                <div class="card mb-4" *ngIf="transaction.status=='Pending'">
+                    <div class="card-header">
+                        <h5 class="card-title">
+                            {{ transaction.Sender.name }}
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">
+                            <ion-icon name="cash-outline"></ion-icon> Amount: {{
+                            transaction.amount }}
+                        </p>
+                        <p class="card-text">
+                            <ion-icon name="call-outline"></ion-icon> Sender
+                            Phone Number: {{ transaction.phone_number }}
+                        </p>
+                        <p
+                            class="card-text"
+                            [ngClass]="transaction.status === 'pending' ? 'text-warning' : 'text-success'"
+                        >
+                            <ion-icon name="alert-circle-outline"></ion-icon>
+                            Status: {{ transaction.status }}
+                        </p>
+                        <p class="card-text">
+                            <ion-icon name="calendar-outline"></ion-icon>
+                            Transaction Date: {{ transaction.date }}
+                        </p>
+                        <p class="card-text">
+                            <ion-icon name="cash-outline"></ion-icon>Money
+                            Recived In: {{ transaction.upiId }}
+                        </p>
+                        <p class="card-text">
+                            <ion-icon name="hash-outline"></ion-icon> UTR
+                            Number: {{ transaction.utrNumber }}
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <button
+                            class="btn btn-primary form-control"
+                            [disabled]="transaction.status === 'completed'"
+                            (click)="markAsReceived(transaction)"
+                        >
+                            Payment Received
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body p-2">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Sent By</th>
+                            <th>Phone</th>
+                            <th>UPI</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let transaction of data; let i = index">
+                            <td>{{ transaction.Sender.name }}</td>
+                            <td>{{ transaction.Sender.mobile_number }}</td>
+                            <td>{{ transaction.upiId }}</td>
+                            <td>₹{{ transaction.amount }}</td>
+                            <td
+                                [class]="transaction.status === 'completed' ? 'text-success' : 'text-warning'"
+                            >
+                                {{ transaction.status }}
+                            </td>
+                            <td>{{ transaction.date }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</ion-content>

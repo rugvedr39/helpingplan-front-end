@@ -1,0 +1,43 @@
+ion-card {
+    margin-bottom: 20px;
+}
+
+ion-card-header {
+    background-color: #3880ff;
+    color: #fff;
+}
+
+.user-item {
+    --padding-start: 0;
+    --inner-padding-end: 0;
+}
+
+ion-avatar {
+    width: 48px;
+    height: 48px;
+    margin-inline-end: 16px;
+}
+
+ion-icon {
+    font-size: 32px;
+}
+
+ion-label {
+    white-space: normal;
+}
+
+ion-label h2 {
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 4px;
+}
+
+ion-label p {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
+}
+
+ion-badge {
+    margin-top: 8px;
+}

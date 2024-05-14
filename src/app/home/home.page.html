@@ -1,20 +1,87 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+    <ion-header collapse="condense">
+        <ion-toolbar>
+            <ion-title size="large">Home</ion-title>
+        </ion-toolbar>
+    </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+    <div class="ion-padding">
+        <ion-card
+            class="custom-card pending-received"
+            (click)="navigateToRecived()"
+        >
+            <ion-card-header>
+                <ion-card-title>
+                    <ion-icon name="cash-outline" class="large-icon"></ion-icon>
+                    Total Pending Received Help
+                </ion-card-title>
+            </ion-card-header>
+            <ion-card-content class="amount-text text-center">
+                {{ totalInitiatedPayments | currency:'INR' }}
+            </ion-card-content>
+        </ion-card>
+
+        <ion-card class="custom-card pending-give" (click)="navigateToActive()">
+            <ion-card-header>
+                <ion-card-title>
+                    <ion-icon name="cash-outline" class="large-icon"></ion-icon>
+                    Total Pending Give Help
+                </ion-card-title>
+            </ion-card-header>
+            <ion-card-content class="amount-text text-center">
+                {{ totalInitiatedPaymentsGive | currency:'INR' }}
+            </ion-card-content>
+        </ion-card>
+
+        <ion-card
+            class="custom-card received-help"
+            (click)="navigateToRecived()"
+        >
+            <ion-card-header>
+                <ion-card-title>
+                    <ion-icon
+                        name="checkmark-circle-outline"
+                        class="large-icon"
+                    ></ion-icon>
+                    Total Help Received
+                </ion-card-title>
+            </ion-card-header>
+            <ion-card-content class="amount-text text-center">
+                {{ totalCompletedPayments | currency:'INR' }}
+            </ion-card-content>
+        </ion-card>
+
+        <ion-card class="custom-card give-help" (click)="navigateToActive()">
+            <ion-card-header>
+                <ion-card-title>
+                    <ion-icon
+                        name="checkmark-circle-outline"
+                        class="large-icon"
+                    ></ion-icon>
+                    Total Help Gived
+                </ion-card-title>
+            </ion-card-header>
+            <ion-card-content class="amount-text text-center">
+                {{ totalCompletedPaymentsGive | currency:'INR' }}
+            </ion-card-content>
+        </ion-card>
+
+        <ion-card
+            class="custom-card total-team"
+            (click)="navigateToLevelWiseChart()"
+        >
+            <ion-card-header>
+                <ion-card-title>
+                    <ion-icon
+                        name="checkmark-circle-outline"
+                        class="large-icon"
+                    ></ion-icon>
+                    Total Team
+                </ion-card-title>
+            </ion-card-header>
+            <ion-card-content class="amount-text text-center">
+                {{ Total_member }}
+            </ion-card-content>
+        </ion-card>
+    </div>
 </ion-content>

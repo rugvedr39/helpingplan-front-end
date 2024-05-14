@@ -1,27 +1,65 @@
-#container {
-  text-align: center;
+.custom-card {
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
 
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+    ion-card-header {
+        padding: 16px;
+    }
+
+    ion-card-title {
+        display: flex;
+        align-items: center;
+        font-weight: bold;
+    }
+
+    .large-icon {
+        font-size: 32px;
+        margin-right: 10px;
+    }
+
+    .amount-text {
+        font-size: 24px;
+        font-weight: bold;
+    }
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+.pending-received {
+    background-color: #e6f2ff;
+
+    ion-card-title {
+        color: #2196f3;
+    }
 }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
+.pending-give {
+    background-color: #fff0e5;
 
-  color: #8c8c8c;
-
-  margin: 0;
+    ion-card-title {
+        color: #ff9800;
+    }
 }
 
-#container a {
-  text-decoration: none;
+.received-help {
+    background-color: #e8f5e9;
+
+    ion-card-title {
+        color: #4caf50;
+    }
+}
+
+.give-help {
+    background-color: #fff3e0;
+
+    ion-card-title {
+        color: #fbc02d;
+    }
+}
+
+.total-team {
+    background-color: #e1f5fe;
+
+    ion-card-title {
+        color: #03a9f4;
+    }
 }

@@ -1,0 +1,21 @@
+/* level-details-modal.component.scss */
+ion-list {
+    --background: #f4f4f8; /* Light grey background for the list */
+}
+
+ion-item {
+    --background-hover: #e0e0e0; /* Light grey background on hover */
+    --background-activated: #bcbcbc; /* Darker grey when item is active */
+    --border-color: #ccc; /* Light grey border for each item */
+    --border-style: solid;
+    --border-width: 0px 0px 1px 0px; /* Only bottom border */
+    transition: background-color 0.3s;
+    margin-bottom: 5px; /* Spacing between items */
+    border-radius: 8px; /* Rounded corners for a softer look */
+}
+
+ion-label {
+    color: #333; /* Dark grey color for text */
+    font-size: 16px; /* Reasonable text size */
+    font-weight: 500; /* Medium font weight for better readability */
+}

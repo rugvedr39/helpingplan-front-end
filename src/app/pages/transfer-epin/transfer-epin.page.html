@@ -1,0 +1,23 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+        <ion-title>TransferEpin</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+    <ion-header collapse="condense">
+        <ion-toolbar>
+            <ion-title size="large">TransferEpin</ion-title>
+        </ion-toolbar>
+    </ion-header>
+    <ion-list>
+        <ion-item *ngFor="let epin of unusedEPins">
+            <ion-label>
+                Code: {{ epin.code }}
+                <ion-button (click)="openTransferModal(epin.code)"
+                    >Transfer</ion-button
+                >
+            </ion-label>
+        </ion-item>
+    </ion-list>
+</ion-content>

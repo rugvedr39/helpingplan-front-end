@@ -1,0 +1,133 @@
+<ion-header translucent="true">
+    <ion-toolbar>
+        <ion-title>Signup</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+    <div class="signup-form mb-5">
+        <form [formGroup]="signupForm" (ngSubmit)="signup()">
+            <ion-list>
+                <ion-item>
+                    <ion-label position="floating">Name</ion-label>
+                    <ion-input formControlName="name" required></ion-input>
+                </ion-item>
+                <ion-text
+                    color="danger"
+                    *ngIf="signupForm.get('name')?.touched && signupForm.get('name')?.invalid"
+                >
+                    <small>Name is required.</small>
+                </ion-text>
+
+                <ion-item>
+                    <ion-label position="floating">Email</ion-label>
+                    <ion-input
+                        formControlName="email"
+                        type="email"
+                        required
+                    ></ion-input>
+                </ion-item>
+                <ion-text
+                    color="danger"
+                    *ngIf="signupForm.get('email')?.touched && signupForm.get('email')?.errors"
+                >
+                    <small
+                        >Email is required and must be a valid email
+                        address.</small
+                    >
+                </ion-text>
+
+                <ion-item>
+                    <ion-label position="floating">Password</ion-label>
+                    <ion-input
+                        formControlName="password"
+                        type="password"
+                        required
+                    ></ion-input>
+                </ion-item>
+                <ion-text
+                    color="danger"
+                    *ngIf="signupForm.get('password')?.touched && signupForm.get('password')?.invalid"
+                >
+                    <small>Password is required.</small>
+                </ion-text>
+
+                <ion-item>
+                    <ion-label position="floating">Mobile Number</ion-label>
+                    <ion-input
+                        formControlName="mobile_number"
+                        type="tel"
+                        required
+                    ></ion-input>
+                </ion-item>
+                <ion-text
+                    color="danger"
+                    *ngIf="signupForm.get('mobile_number')?.touched && signupForm.get('mobile_number')?.invalid"
+                >
+                    <small>Mobile number is required.</small>
+                </ion-text>
+
+                <ion-item>
+                    <ion-label position="floating">Bank Name</ion-label>
+                    <ion-input
+                        formControlName="bank_details.bank_name"
+                    ></ion-input>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label position="floating">Account Number</ion-label>
+                    <ion-input
+                        formControlName="bank_details.account_number"
+                    ></ion-input>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label position="floating">IFSC Code</ion-label>
+                    <ion-input
+                        formControlName="bank_details.ifsc_code"
+                    ></ion-input>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label position="floating">UPI Number</ion-label>
+                    <ion-input
+                        formControlName="upi_number"
+                        required
+                    ></ion-input>
+                </ion-item>
+                <ion-text
+                    color="danger"
+                    *ngIf="signupForm.get('upi_number')?.touched && signupForm.get('upi_number')?.errors?.['required']"
+                >
+                    <small>UPI number is required.</small>
+                </ion-text>
+
+                <ion-item>
+                    <ion-label position="floating">Referral Code</ion-label>
+                    <ion-input
+                        formControlName="referral_code"
+                        required
+                        (ionChange)="validateReferral()"
+                    ></ion-input>
+                </ion-item>
+                <ion-text
+                    color="danger"
+                    *ngIf="signupForm.get('referral_code')?.touched && signupForm.get('referral_code')?.errors?.['required']"
+                >
+                    <small>Referral code is required.</small>
+                </ion-text>
+                <ion-text color="success" *ngIf="referralData !== undefined">
+                    <small>{{ referralData }}</small>
+                </ion-text>
+                <ion-button
+                    expand="block"
+                    [disabled]="!signupForm.valid"
+                    (click)="signup()"
+                    class="signup-btn mb-5"
+                >
+                    Signup
+                </ion-button>
+            </ion-list>
+        </form>
+    </div>
+</ion-content>

@@ -1,0 +1,11 @@
+<ion-list>
+    <ion-list-header *ngFor="let level of level; let i = index">
+        <ion-label>Level {{ level.level }}</ion-label>
+    </ion-list-header>
+    <ion-item *ngFor="let user of level.users">
+        <ion-avatar slot="start">
+            <ion-icon name="person"></ion-icon>
+        </ion-avatar>
+        <ion-label (click)="handleUserClick(user)">{{ user.name }}</ion-label>
+    </ion-item>
+</ion-list>
