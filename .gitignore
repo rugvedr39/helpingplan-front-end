@@ -9,27 +9,6 @@
 UserInterfaceState.xcuserstate
 $RECYCLE.BIN/
 
-*.log
-log.txt
-
-
-/.sourcemaps
-/.versions
-/coverage
-
-# Ionic
-/.ionic
-/www
-/platforms
-/plugins
-
-# Compiled output
-/dist
-/tmp
-/out-tsc
-/bazel-out
-
-# Node
 /node_modules
 npm-debug.log
 yarn-error.log
