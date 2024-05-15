@@ -33,7 +33,6 @@ const routes: Routes = [
     path: "active",
     loadChildren: () =>
       import("./active/active.module").then((m) => m.ActivePageModule),
-    canActivate: [AuthGuard],
   },
   {
     path: "amount-recived",

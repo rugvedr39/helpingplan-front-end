@@ -29,11 +29,6 @@ export class LoginPage {
           if (data.token) {
             localStorage.setItem("token", data.token);
             localStorage.setItem("user", JSON.stringify(data.user));
-            localStorage.setItem(
-              "nthReferrer",
-              JSON.stringify(data.nthReferrer),
-            );
-
             window.location.href = "/home";
           }
           if (data.message == "User not found") {
