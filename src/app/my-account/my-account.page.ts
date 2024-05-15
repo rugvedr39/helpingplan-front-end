@@ -22,7 +22,7 @@ export class MyAccountPage {
   }
 
   logout() {
-    console.log("Logging out...");
+    localStorage.clear();
     this.router.navigateByUrl("/login");
   }
 }
