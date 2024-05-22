@@ -48,7 +48,7 @@ const routes: Routes = [
       import("./level-wise-chart/level-wise-chart.module").then(
         (m) => m.LevelWiseChartPageModule,
       ),
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
   {
     path: "my-account",
@@ -103,6 +103,10 @@ const routes: Routes = [
         (m) => m.TransactionHistoryPageModule,
       ),
     canActivate: [AuthGuard],
+  },
+  {
+    path: 'network',
+    loadChildren: () => import('./network/network.module').then( m => m.NetworkPageModule)
   },
 ];
 

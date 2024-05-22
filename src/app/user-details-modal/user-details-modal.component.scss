@@ -1,0 +1,60 @@
+ion-header {
+    --background: linear-gradient(
+        to right,
+        #4facfe,
+        #00f2fe
+    ); // Gradient background for header
+    --color: white; // White text color for contrast
+}
+
+ion-toolbar {
+    --padding-top: 5px;
+    --padding-bottom: 5px;
+}
+
+ion-content {
+    --background: white; // White background for content area
+    background-image: url("/assets/bg-pattern.png"); // Optional: Background pattern
+}
+
+ion-item {
+    --border-color: transparent; // Removes borders between items
+    --background: rgba(
+        245,
+        245,
+        245,
+        0.6
+    ); // Semi-transparent background for each item
+    border-radius: 8px; // Rounded corners for items
+    margin-bottom: 8px; // Space between items
+
+    ion-icon {
+        color: #3273dc; // Icon color
+        margin-right: 10px; // Space between icon and label
+        font-size: 1.3em; // Larger icons
+    }
+
+    ion-label {
+        --text-wrap: break-word; // Ensures text wraps nicely
+    }
+
+    h2 {
+        color: #000; // Dark color for main text
+    }
+
+    p {
+        color: #666; // Lighter color for less important text
+    }
+}
+
+// Add animations
+ion-item {
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+
+    &:hover {
+        transform: translateY(-3px); // Lift effect on hover
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12); // Shadow effect on hover
+    }
+}

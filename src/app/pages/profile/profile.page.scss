@@ -1,0 +1,17 @@
+/* profile.page.scss */
+ion-card {
+    --background: #f4f4f4; // Light grey background for cards
+
+    ion-icon {
+        color: #3880ff; // Ionic blue for icons
+        margin-right: 8px; // Space out icons from text
+    }
+
+    ion-card-title {
+        color: #222428; // Dark grey for text
+    }
+}
+
+ion-toolbar {
+    --background: #3880ff; // Match Ionic blue theme
+}

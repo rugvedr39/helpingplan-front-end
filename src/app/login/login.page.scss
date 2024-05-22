@@ -1,0 +1,57 @@
+/* login.page.scss */
+ion-content {
+    --background: linear-gradient(
+        to top,
+        #f5f7fa 0%,
+        #c3cfe2 100%
+    ); // Smooth background gradient
+
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 80vh; // Full screen height
+    }
+
+    .login-card {
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); // Soft shadow for depth
+        border-radius: 15px; // Rounded corners
+
+        ion-card-header {
+            background-color: #3272fd; // Vibrant header background
+            color: white;
+            text-align: center;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+
+        ion-card-title {
+            font-size: 1.5em;
+        }
+
+        ion-card-content {
+            ion-item {
+                --background: #ffffff; // Ensures the input background is clear
+                --padding-start: 0;
+                --padding-end: 0;
+                --inner-padding-start: 10px;
+                --inner-padding-end: 10px;
+                --border-radius: 10px; // Rounded input fields
+                margin-top: 10px;
+            }
+
+            ion-input {
+                --padding-start: 5px; // Padding for the input text
+                --padding-end: 5px;
+            }
+
+            .ion-padding-top {
+                padding-top: 20px;
+            }
+        }
+    }
+
+    ion-button {
+        margin-top: 10px;
+    }
+}

@@ -10,6 +10,7 @@ import { LevelDetailsModalComponent } from "../components/level-details-modal/le
 })
 export class LevelWiseChartPage implements OnInit {
   referralTree: any;
+  loading: boolean = true;
   levels: number[] = [];
 
   constructor(
@@ -24,6 +25,7 @@ export class LevelWiseChartPage implements OnInit {
     this.referralTreeService._usertreedata.subscribe((data) => {
       this.referralTree = data;
     });
+    this.loading = false;
   }
 
   handleLevelClick(levelIndex: number) {

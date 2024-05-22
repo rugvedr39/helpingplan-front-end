@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { UserDataService } from "../user-data.service";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-signup",
@@ -11,7 +12,10 @@ export class SignupPage {
   signupForm: FormGroup;
   referralData: any;
 
-  constructor(private userDataService: UserDataService) {
+  constructor(
+    private userDataService: UserDataService,
+    private route: ActivatedRoute,
+  ) {
     this.signupForm = new FormGroup({
       name: new FormControl("", Validators.required),
       email: new FormControl("", [Validators.required, Validators.email]),
@@ -25,14 +29,26 @@ export class SignupPage {
       upi_number: new FormControl("", Validators.required),
       referral_code: new FormControl("", Validators.required),
     });
+    this.populateReferralCodeFromURL();
+  }
+
+  populateReferralCodeFromURL() {
+    this.route.queryParams.subscribe((params) => {
+      if (params["token"]) {
+        this.signupForm.get("referral_code")!.setValue(params["token"]);
+        this.validateReferral();
+      }
+    });
   }
 
   validateReferral() {
-    let control = this.signupForm.get("referral_code");
+    let control: any = this.signupForm.get("referral_code");
+    console.log(control.value);
     return new Promise((resolve) => {
       if (control?.value) {
         this.userDataService.getUserByReferralCode(control.value).subscribe(
           (data) => {
+            console.log(data);
             this.referralData = data.name;
             resolve(null);
           },

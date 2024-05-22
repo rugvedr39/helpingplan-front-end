@@ -1,0 +1,21 @@
+<!-- share-card.component.html -->
+<ion-card>
+    <ion-card-header>
+        <ion-card-title>Share This Link!</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+        <ion-item lines="none">
+            <ion-label class="ion-text-wrap">
+                <a [href]="baseUrl + '/signup?token=' + user.username">
+                    {{ baseUrl }}/signup?token={{ user.username }}
+                </a>
+            </ion-label>
+        </ion-item>
+        <ion-button
+            expand="block"
+            (click)="copyLink(baseUrl + '/signup?token=' + user.username)"
+        >
+            Copy Link
+        </ion-button>
+    </ion-card-content>
+</ion-card>

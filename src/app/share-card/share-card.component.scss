@@ -1,0 +1,36 @@
+ion-card {
+    display: block;
+    margin: 10px;
+    border-radius: 8px; // Adds rounded corners
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); // Subtle shadow for depth
+    overflow: hidden; // Ensures nothing leaks outside the border radius
+
+    ion-card-header {
+        background-color: #3273dc; // A nice blue header
+        color: white;
+        padding: 15px;
+        font-size: 18px;
+        text-align: center;
+    }
+
+    ion-card-content {
+        padding: 20px;
+        background-color: #f4f4f4; // Light grey background for the content area
+        color: #363636; // Dark grey text for better readability
+
+        a {
+            color: #3273dc; // Link color matches the header
+            text-decoration: none; // Removes underline from links
+            font-weight: bold;
+        }
+
+        ion-button {
+            --background: #ff3860; // Bright red for the button background
+            --background-activated: #ff2b56; // A slightly darker red when button is pressed
+            --background-hover: #ff3e6c; // A lighter red for hover effect
+            --border-radius: 6px; // Rounded corners for the button
+            width: 100%; // Full width button
+            margin-top: 15px;
+        }
+    }
+}

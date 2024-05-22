@@ -1,0 +1,41 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+        <ion-title>Achievements</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+    <ion-header collapse="condense">
+        <ion-toolbar>
+            <ion-title size="large">Network Achievements</ion-title>
+        </ion-toolbar>
+    </ion-header>
+
+    <!-- Content area for listing top users with rankings -->
+    <div *ngIf="!user">
+        <ion-spinner></ion-spinner>
+    </div>
+    <ion-list class="p-3">
+        <ion-card *ngFor="let user of user; let i = index">
+            <ion-card-header>
+                <ion-card-title class="text-capitalize text-light">
+                    <span class="rank">#{{ i + 1 }}</span> {{ user.Receiver.name
+                    }}
+                </ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+                <p>
+                    Username:
+                    <span class="text-uppercase"
+                        >{{ user.Receiver.username }}</span
+                    >
+                </p>
+                <p>Mobile: {{ user.Receiver.mobile_number }}</p>
+                <p class="highlighted">
+                    <ion-icon name="cash-outline" slot="start"></ion-icon>
+                    Total Received: ₹{{ user.total_received }}
+                </p>
+            </ion-card-content>
+        </ion-card>
+    </ion-list>
+</ion-content>

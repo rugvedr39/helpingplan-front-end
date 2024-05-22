@@ -1,0 +1,35 @@
+<!-- user-details-modal.component.html -->
+<ion-header translucent>
+    <ion-toolbar color="primary">
+        <ion-title>User Details</ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="dismissModal()">
+                <ion-icon name="close"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+    <ion-list lines="full">
+        <ion-item>
+            <ion-icon name="person-circle" slot="start"></ion-icon>
+            <ion-label>
+                <h2>{{ userData.name }}</h2>
+                <p>Username: {{ userData.username }}</p>
+            </ion-label>
+        </ion-item>
+        <ion-item>
+            <ion-icon name="mail" slot="start"></ion-icon>
+            <ion-label>Email: {{ userData.email }}</ion-label>
+        </ion-item>
+        <ion-item>
+            <ion-icon name="call" slot="start"></ion-icon>
+            <ion-label>Mobile: {{ userData.mobile_number }}</ion-label>
+        </ion-item>
+        <ion-item>
+            <ion-icon name="wallet" slot="start"></ion-icon>
+            <ion-label>UPI Number: {{ userData.upi_number }}</ion-label>
+        </ion-item>
+    </ion-list>
+</ion-content>

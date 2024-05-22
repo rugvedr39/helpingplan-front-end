@@ -1,34 +1,158 @@
-.card {
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .card-header {
-    background-color: #f0f0f0;
-    padding: 10px 15px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-  }
-  
-  .card-footer {
-    background-color: #f8f9fa;
-    padding: 10px 15px;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-  }
-  
-  .card-text {
-    margin-bottom: 10px;
-  }
-  
-  .card-text ion-icon {
-    margin-right: 5px;
-  }
-  
-  .text-warning {
-    color: #ffc107;
-  }
-  
-  .text-success {
-    color: #28a745;
-  }
+/* Amount Received Page Styling */
+ion-content {
+    --background: linear-gradient(
+        to top,
+        #ffffff,
+        #f6f7f9
+    ); // Soft gradient for background
+
+    ion-card {
+        margin: 12px;
+        border-radius: 15px; // Rounded corners for modern look
+        overflow: hidden; // Ensures that the border-radius clips the content inside
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12); // Subtle and elegant shadow
+
+        ion-card-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            font-size: 1.2em;
+        }
+
+        ion-card-content {
+            padding: 15px;
+            background: white; // Ensures readability with a clean background
+            color: #4a4a4a; // Subtle text color for elegance
+
+            p {
+                display: flex;
+                align-items: center;
+                font-size: 1em; // Proper sizing for readability
+                margin-top: 8px;
+
+                ion-icon {
+                    margin-right: 10px;
+                    font-size: 1.5em; // Larger icons for better visibility
+                    color: #5c67f2; // Icon color that matches the header
+                }
+            }
+        }
+
+        ion-card-footer {
+            padding: 10px;
+            background: #f8f8f8; // Slightly off-white for a distinct footer area
+            text-align: center;
+            ion-button {
+                --background: #4caf50; // Vivid button color for actions
+            }
+        }
+    }
+}
+
+/* Subtle animations for loading and interactions */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+ion-card {
+    animation: fadeIn 0.6s ease-out forwards;
+}
+
+ion-button {
+    transition:
+        background-color 0.3s,
+        transform 0.2s;
+    &:hover {
+        transform: scale(1.05); // Slightly enlarges the button on hover
+        --background-hover: #43a047; // Darker green when hovered
+    }
+    &:active {
+        transform: scale(0.98); // Slightly shrink on click
+        --background-activated: #388e3c; // Even darker green when pressed
+    }
+}
+
+/* Amount Received Page Styling */
+.table-responsive {
+    overflow-x: auto; // Ensures the table is scrollable horizontally on smaller screens
+    margin: 20px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); // Adds a light shadow for depth
+    border-radius: 8px; // Rounded corners for a softer look
+
+    table {
+        width: 100%; // Full width to fill the container
+        border-collapse: collapse; // Ensures borders between cells are merged
+        background-color: #ffffff; // Clean white background for readability
+
+        thead {
+            th {
+                background-color: #f7f7f7; // Light grey background for headers
+                color: #333; // Dark text for contrast
+                padding: 12px 15px;
+                font-size: 1em;
+                font-weight: bold;
+                border-bottom: 2px solid #e0e0e0; // Solid line to distinguish header
+            }
+        }
+
+        tbody {
+            tr {
+                transition: background-color 0.3s ease; // Smooth transition for hover effects
+
+                &:hover {
+                    background-color: #f0f0f0; // Highlight on hover for interactivity
+                }
+
+                td {
+                    padding: 10px 15px; // Adequate padding for space and readability
+                    color: #666; // Subtle text color
+                    font-size: 0.9em; // Slightly smaller font size for body content
+                    border-bottom: 1px solid #eee; // Light borders for separation
+
+                    &:last-child {
+                        text-align: center; // Centering text for last column (commonly actions)
+                    }
+                }
+            }
+        }
+    }
+}
+@media (max-width: 768px) {
+    .table-responsive {
+        margin: 10px;
+
+        table {
+            thead {
+                th {
+                    padding: 10px; // Slightly reduced padding for space efficiency
+                }
+            }
+            tbody {
+                tr {
+                    td {
+                        padding: 8px; // Reduce padding to fit content on smaller screens
+                    }
+                }
+            }
+        }
+    }
+}
+.table-responsive {
+    table {
+        tbody {
+            tr {
+                cursor: pointer; // Suggests that rows are interactive
+                &:active {
+                    background-color: #eaeaea; // Visually indicates the row is pressed
+                }
+            }
+        }
+    }
+}

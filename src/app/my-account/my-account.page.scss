@@ -1,47 +1,69 @@
-ion-header {
-    --background: #ffffff; // Adjust the color according to your theme
-    --ion-color-base: auto;
-}
-
-ion-toolbar {
-    --background: #f8f9fa; // Light grey background
-}
-
-ion-title {
-    color: #1a73e8; // Brand color for titles
-}
-
-ion-content {
-    --background: #ffffff; // White background for content area
-}
-
 ion-list {
-    margin-top: 20px; // Adds some space above the list
+    background: rgba(
+        255,
+        255,
+        255,
+        0.1
+    ); // Slightly transparent background for list
+    border-radius: 20px; // Rounded corners for the list
+    margin: 16px; // Adds margin around the list for spacing
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2); // Adds depth with shadow
+    overflow: hidden; // Ensures the border radius clips the content
 }
 
 ion-item {
-    --background: #ffffff; // Ensures items have a white background
-    --border-radius: 8px; // Rounded corners for items
-    --padding-start: 20px; // Left padding for content inside items
-    --padding-end: 20px; // Right padding for content inside items
-    --inner-border-width: 0; // Removes inner borders in ion-item
-    --min-height: 50px; // Sets a minimum height for each item for better touch targets
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); // Subtle shadow for depth
-    margin-bottom: 10px; // Space between items
+    --background: transparent; // Makes item background transparent
+    --background-activated: rgba(
+        255,
+        255,
+        255,
+        0.2
+    ); // Light highlight on active
+    --padding-start: 16px; // Standard padding
+    --padding-end: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.25); // Subtle item separator
     transition:
-        transform 0.1s,
-        box-shadow 0.1s; // Smooth transition for interaction
+        transform 0.2s,
+        box-shadow 0.3s; // Smooth transitions for interaction
 
-    &:active {
-        transform: scale(0.98); // Slightly shrink when tapped
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); // Larger shadow when active
+    &:hover {
+        transform: scale(1.02); // Slightly enlarges item on hover
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); // Subtle shadow on hover
     }
 }
 
-ion-label {
-    font-size: 1.1em; // Slightly larger font size
+.icon-style {
+    color: #b2bec3; // Soft white for icons
+    font-size: 1.5rem; // Larger icons for better visibility
 }
 
-.logout-button {
-    --color: #d32f2f; // Red color for logout to indicate a cautionary action
+ion-label {
+    font-size: 1.1rem; // Larger font for readability
+}
+ion-toolbar {
+    --background: linear-gradient(
+        to right,
+        #8e2de2,
+        #4a00e0
+    ); // Deep purple gradient
+    color: white; // White text for clarity
+}
+
+ion-title {
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2); // Adds depth to the title text
+}
+ion-button {
+    --background: #34ace0; // Bright blue for buttons
+    --background-hover: #53d1fb; // Lighter blue on hover
+    --background-activated: #2286c3; // Darker blue when activated
+    --border-radius: 15px; // Rounded edges for buttons
+    --padding-vertical: 10px; // Vertical padding
+    --padding-horizontal: 20px; // Horizontal padding
+    transition:
+        background-color 0.3s,
+        transform 0.2s; // Smooth color and transform transitions
+
+    &:hover {
+        transform: translateY(-2px); // Lifts button slightly on hover
+    }
 }

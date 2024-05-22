@@ -14,7 +14,9 @@
     <div class="ion-padding">
         <ion-card>
             <ion-card-header>
-                <ion-card-title>Transaction Summary</ion-card-title>
+                <ion-card-title class="text-white"
+                    >Transaction Summary</ion-card-title
+                >
             </ion-card-header>
             <ion-card-content>
                 <p>
@@ -42,7 +44,7 @@
                         </p>
                         <p class="card-text">
                             <ion-icon name="call-outline"></ion-icon> Sender
-                            Phone Number: {{ transaction.phone_number }}
+                            Phone Number: {{ transaction.Sender.mobile_number }}
                         </p>
                         <p
                             class="card-text"
@@ -92,7 +94,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let transaction of data; let i = index">
+                        <tr
+                            *ngFor="let transaction of data; let i = index"
+                            (click)="openUserDetails(transaction.sender_id)"
+                        >
                             <td>{{ transaction.Sender.name }}</td>
                             <td>{{ transaction.Sender.mobile_number }}</td>
                             <td>{{ transaction.upiId }}</td>

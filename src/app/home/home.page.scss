@@ -1,65 +1,106 @@
-.custom-card {
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    margin-bottom: 20px;
+ion-card.custom-card {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+    border-radius: 12px;
+    overflow: hidden; // Ensures that all inner elements adhere to the border radius
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+    background: #ffffff; // Default white background
+
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    }
 
     ion-card-header {
-        padding: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 12px;
     }
 
     ion-card-title {
-        display: flex;
-        align-items: center;
+        text-align: center;
         font-weight: bold;
-    }
-
-    .large-icon {
-        font-size: 32px;
-        margin-right: 10px;
     }
 
     .amount-text {
-        font-size: 24px;
-        font-weight: bold;
+        text-align: center;
+        font-size: 1.4em;
+    }
+
+    .large-icon {
+        font-size: 2em;
+        margin-right: 8px;
+        vertical-align: middle;
     }
 }
 
-.pending-received {
-    background-color: #e6f2ff;
-
-    ion-card-title {
-        color: #2196f3;
-    }
+// Define unique gradients for card headers and add a complementary bottom color
+.pending-received ion-card-header {
+    background: linear-gradient(
+        to top right,
+        #56ab2f,
+        #a8e063
+    ); // Green gradient
+}
+.pending-received ion-card-content {
+    background: #f0f9ec; // Light green at the bottom
 }
 
-.pending-give {
-    background-color: #fff0e5;
-
-    ion-card-title {
-        color: #ff9800;
-    }
+.pending-give ion-card-header {
+    background: linear-gradient(to top right, #007adf, #00ecbc); // Blue to cyan
+}
+.pending-give ion-card-content {
+    background: #e0f7fa; // Light cyan at the bottom
 }
 
-.received-help {
-    background-color: #e8f5e9;
-
-    ion-card-title {
-        color: #4caf50;
-    }
+.received-help ion-card-header {
+    background: linear-gradient(
+        to top right,
+        #fe8c00,
+        #f83600
+    ); // Orange to red
+}
+.received-help ion-card-content {
+    background: #fff0e8; // Light orange at the bottom
 }
 
-.give-help {
-    background-color: #fff3e0;
-
-    ion-card-title {
-        color: #fbc02d;
-    }
+.give-help ion-card-header {
+    background: linear-gradient(
+        to top right,
+        #654ea3,
+        #eaafc8
+    ); // Purple to pink
+}
+.give-help ion-card-content {
+    background: #f3e6f9; // Light purple at the bottom
 }
 
-.total-team {
-    background-color: #e1f5fe;
+.total-team ion-card-header {
+    background: linear-gradient(
+        to top right,
+        #4ca1af,
+        #c4e0e5
+    ); // Teal to light blue
+}
+.total-team ion-card-content {
+    background: #e6f8ff; // Very light blue at the bottom
+}
+.ion-padding {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    justify-content: center;
+}
 
-    ion-card-title {
-        color: #03a9f4;
+@media (max-width: 600px) {
+    .ion-padding {
+        grid-template-columns: 1fr;
+        gap: 10px;
     }
 }
