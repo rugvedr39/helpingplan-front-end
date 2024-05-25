@@ -108,6 +108,14 @@ const routes: Routes = [
     path: 'network',
     loadChildren: () => import('./network/network.module').then( m => m.NetworkPageModule)
   },
+  {
+    path: 'reward',
+    loadChildren: () => import('./reward/reward.module').then( m => m.RewardPageModule)
+  },
+  {
+    path: 'product',
+    loadChildren: () => import('./product/product.module').then( m => m.ProductPageModule)
+  },
 ];
 
 @NgModule({

@@ -1,7 +1,7 @@
 <ion-footer *ngIf="!isHidden">
     <ion-toolbar>
         <ion-row class="ion-no-padding ion-justify-content-around">
-            <ion-col size="4" class="ion-text-center">
+            <ion-col size="3" class="ion-text-center">
                 <ion-button
                     fill="clear"
                     routerLink="/"
@@ -13,7 +13,7 @@
                     </div>
                 </ion-button>
             </ion-col>
-            <ion-col size="4" class="ion-text-center">
+            <ion-col size="3" class="ion-text-center">
                 <ion-button
                     fill="clear"
                     routerLink="/my-account"
@@ -25,7 +25,7 @@
                     </div>
                 </ion-button>
             </ion-col>
-            <ion-col size="4" class="ion-text-center">
+            <ion-col size="3" class="ion-text-center">
                 <ion-button
                     fill="clear"
                     routerLink="/network"
@@ -34,6 +34,17 @@
                     <div class="tab-container">
                         <ion-icon name="bar-chart" class="tab-icon"></ion-icon>
                         <ion-label class="tab-label">Achievements</ion-label>
+                    </div>
+                </ion-button>
+            </ion-col>
+            <ion-col size="3" class="ion-text-center">
+                <ion-button fill="clear" routerLink="/reward">
+                    <div class="tab-container">
+                        <ion-icon
+                            name="trophy-outline"
+                            class="tab-icon"
+                        ></ion-icon>
+                        <ion-label class="tab-label">Reward</ion-label>
                     </div>
                 </ion-button>
             </ion-col>

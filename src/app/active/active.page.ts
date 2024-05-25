@@ -1,5 +1,6 @@
 import { TransactionService } from "./../transaction.service";
 import { Component, OnInit } from "@angular/core";
+import { ToastController } from "@ionic/angular";
 import { UserDataService } from "../user-data.service";
 import { ModalController } from "@ionic/angular";
 import { UtrModalComponent } from "../utr-modal/utr-modal.component";
@@ -17,6 +18,7 @@ export class ActivePage implements OnInit {
     private TransactionService: TransactionService,
     private modalController: ModalController,
     private userDataService: UserDataService,
+    private toastController: ToastController,
   ) {
     this.user = JSON.parse(localStorage.getItem("user") || "{}");
     this.TransactionService.getTransactions(this.user.id).subscribe(
@@ -54,5 +56,24 @@ export class ActivePage implements OnInit {
         console.error("Error fetching user data:", err);
       },
     });
+  }
+
+  copyUPIId(upiId: string) {
+    const textArea = document.createElement("textarea");
+    textArea.value = upiId;
+    document.body.appendChild(textArea);
+    textArea.select();
+    document.execCommand("copy");
+    document.body.removeChild(textArea);
+    this.presentToast("UPI ID copied to clipboard");
+  }
+
+  async presentToast(message: string) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 2000,
+      position: "bottom",
+    });
+    toast.present();
   }
 }

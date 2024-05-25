@@ -18,7 +18,7 @@ export class SignupPage {
   ) {
     this.signupForm = new FormGroup({
       name: new FormControl("", Validators.required),
-      email: new FormControl("", [Validators.required, Validators.email]),
+      email: new FormControl(""),
       password: new FormControl("", Validators.required),
       mobile_number: new FormControl("", Validators.required),
       bank_details: new FormGroup({
@@ -68,8 +68,30 @@ export class SignupPage {
       this.userDataService.createUser(this.signupForm.value).subscribe({
         next: (data) => {
           console.log(data);
-
           alert(`Your UserId is ${data.username}`);
+          this.userDataService
+            .login({
+              username: data.username,
+              password: this.signupForm.get("password")?.value,
+            })
+            .subscribe({
+              next: (data) => {
+                if (data.token) {
+                  localStorage.setItem("token", data.token);
+                  localStorage.setItem("user", JSON.stringify(data.user));
+                  window.location.href = "/home";
+                }
+                if (data.message == "User not found") {
+                  alert("User not found");
+                }
+                if (data.message == "Invalid credentials") {
+                  alert("Invalid credentials");
+                }
+              },
+              error: (data) => {
+                alert(data);
+              },
+            });
         },
         error: (error) => {
           if (error.status === 409) {

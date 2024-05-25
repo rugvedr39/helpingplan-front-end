@@ -20,24 +20,6 @@
                 </ion-text>
 
                 <ion-item>
-                    <ion-label position="floating">Email</ion-label>
-                    <ion-input
-                        formControlName="email"
-                        type="email"
-                        required
-                    ></ion-input>
-                </ion-item>
-                <ion-text
-                    color="danger"
-                    *ngIf="signupForm.get('email')?.touched && signupForm.get('email')?.errors"
-                >
-                    <small
-                        >Email is required and must be a valid email
-                        address.</small
-                    >
-                </ion-text>
-
-                <ion-item>
                     <ion-label position="floating">Password</ion-label>
                     <ion-input
                         formControlName="password"
@@ -66,27 +48,6 @@
                 >
                     <small>Mobile number is required.</small>
                 </ion-text>
-
-                <ion-item>
-                    <ion-label position="floating">Bank Name</ion-label>
-                    <ion-input
-                        formControlName="bank_details.bank_name"
-                    ></ion-input>
-                </ion-item>
-
-                <ion-item>
-                    <ion-label position="floating">Account Number</ion-label>
-                    <ion-input
-                        formControlName="bank_details.account_number"
-                    ></ion-input>
-                </ion-item>
-
-                <ion-item>
-                    <ion-label position="floating">IFSC Code</ion-label>
-                    <ion-input
-                        formControlName="bank_details.ifsc_code"
-                    ></ion-input>
-                </ion-item>
 
                 <ion-item>
                     <ion-label position="floating">UPI Number</ion-label>
