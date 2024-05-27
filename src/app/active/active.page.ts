@@ -5,6 +5,7 @@ import { UserDataService } from "../user-data.service";
 import { ModalController } from "@ionic/angular";
 import { UtrModalComponent } from "../utr-modal/utr-modal.component";
 import { UserDetailsModalComponent } from "../user-details-modal/user-details-modal.component";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-active",
@@ -19,6 +20,7 @@ export class ActivePage implements OnInit {
     private modalController: ModalController,
     private userDataService: UserDataService,
     private toastController: ToastController,
+    private router: Router,
   ) {
     this.user = JSON.parse(localStorage.getItem("user") || "{}");
     this.TransactionService.getTransactions(this.user.id).subscribe(
@@ -75,5 +77,10 @@ export class ActivePage implements OnInit {
       position: "bottom",
     });
     toast.present();
+  }
+
+  logout() {
+    localStorage.clear();
+    this.router.navigateByUrl("/login");
   }
 }
