@@ -27,6 +27,7 @@ export class LoginPage {
       this.userDataService.login(this.loginForm.value).subscribe({
         next: (data) => {
           if (data.token) {
+            localStorage.clear();
             localStorage.setItem("token", data.token);
             localStorage.setItem("user", JSON.stringify(data.user));
             window.location.href = "/home";

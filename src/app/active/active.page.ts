@@ -26,7 +26,17 @@ export class ActivePage implements OnInit {
     this.TransactionService.getTransactions(this.user.id).subscribe(
       (data: any) => {
         this.transactions = data;
-        console.log(data);
+        const firstThreeTransactions = this.transactions.slice(0, 3);
+        const allCompleted = firstThreeTransactions.every(
+          (transaction: any) => transaction.status === "Completed",
+        );
+        const local_user = JSON.parse(localStorage.getItem("user") || "{}");
+        if (allCompleted) {
+          local_user.status = "Active";
+          localStorage.setItem("user", JSON.stringify(local_user));
+        } else {
+          localStorage.setItem("active", "false");
+        }
       },
     );
   }

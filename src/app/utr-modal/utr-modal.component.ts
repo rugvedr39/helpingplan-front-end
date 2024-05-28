@@ -1,9 +1,9 @@
-import { TransactionService } from './../transaction.service';
-import { Component, OnInit,Input } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { TransactionService } from "./../transaction.service";
+import { Component, OnInit, Input } from "@angular/core";
+import { ModalController } from "@ionic/angular";
 
 @Component({
-  selector: 'app-utr-modal',
+  selector: "app-utr-modal",
   template: `
     <ion-header>
       <ion-toolbar>
@@ -21,28 +21,29 @@ import { ModalController } from '@ionic/angular';
       <ion-button expand="block" (click)="submitUTR()">Confirm</ion-button>
     </ion-content>
   `,
-  styleUrls: ['./utr-modal.component.scss']
+  styleUrls: ["./utr-modal.component.scss"],
 })
-export class UtrModalComponent  implements OnInit {
-
+export class UtrModalComponent implements OnInit {
   @Input() transactionId: number | undefined;
   utrNumber: string | undefined;
 
-  constructor(private modalController: ModalController,private TransactionService:TransactionService) {}
+  constructor(
+    private modalController: ModalController,
+    private TransactionService: TransactionService,
+  ) {}
 
   dismiss() {
     this.modalController.dismiss({
-      'dismissed': true
+      dismissed: true,
     });
   }
 
   submitUTR() {
-    this.TransactionService.postTransaction({transactionId:this.transactionId,utrNumber:this.utrNumber}).subscribe((data:any)=>{
-      console.log(data);
-      
-    })
+    this.TransactionService.postTransaction({
+      transactionId: this.transactionId,
+      utrNumber: this.utrNumber,
+    }).subscribe((data: any) => {});
     this.dismiss();
   }
   ngOnInit() {}
-
 }
