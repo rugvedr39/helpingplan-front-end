@@ -28,7 +28,7 @@ export class ActivePage implements OnInit {
         this.transactions = data;
         const firstThreeTransactions = this.transactions.slice(0, 3);
         const allCompleted = firstThreeTransactions.every(
-          (transaction: any) => transaction.status === "Completed",
+          (transaction: any) => transaction.status === "completed",
         );
         const local_user = JSON.parse(localStorage.getItem("user") || "{}");
         if (allCompleted) {

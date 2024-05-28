@@ -95,7 +95,10 @@
                             <td>{{ transaction.upiId }}</td>
                             <td>₹{{ transaction.amount }}</td>
                             <td
-                                [class]="transaction.status === 'Completed' ? 'text-success' : 'text-warning'"
+                                [ngClass]="{
+                                            'bg-success': transaction.status === 'Completed',
+                                            'bg-warning': transaction.status !== 'Completed'
+                                          }"
                             >
                                 {{ transaction.status }}
                             </td>
