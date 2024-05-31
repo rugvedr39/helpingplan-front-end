@@ -9,13 +9,14 @@ import { EpinService } from "../../services/epin.service";
 export class TransferredEpinPage implements OnInit {
   user = JSON.parse(localStorage.getItem("user") || "{}");
   epins: any[] = [];
+
   constructor(private epinService: EpinService) {}
 
   ngOnInit() {
-    this.loadUnusedEPins(this.user.id);
+    this.loadTransferredEPins(this.user.id);
   }
 
-  loadUnusedEPins(userId: number) {
+  loadTransferredEPins(userId: number) {
     this.epinService.getTransferdEPinReport(userId).subscribe({
       next: (data) => {
         this.epins = data;

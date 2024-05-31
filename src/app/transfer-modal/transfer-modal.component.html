@@ -1,24 +1,32 @@
 <ion-header>
     <ion-toolbar>
-        <ion-title>Transfer E-Pin</ion-title>
-        <ion-buttons slot="end">
-            <ion-button (click)="dismissModal()">Close</ion-button>
-        </ion-buttons>
+      <ion-title>Transfer Epin</ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="dismissModal()">Close</ion-button>
+      </ion-buttons>
     </ion-toolbar>
-</ion-header>
-
-<ion-content>
-    <ion-item>
-        <ion-label position="floating">Transfer To Username</ion-label>
-        <ion-input [(ngModel)]="refralUsername"></ion-input>
-    </ion-item>
-    <ion-item *ngIf="referralData">
-        <ion-label> Transfer To Name: {{ referralData.name }} </ion-label>
-    </ion-item>
-    <ion-button expand="full" (click)="validateReferral()"
-        >Validate Referral</ion-button
-    >
-    <ion-button expand="full" (click)="transfer()" ngif="this.referralCode"
-        >Transfer Epin</ion-button
-    >
-</ion-content>
+  </ion-header>
+  
+  <ion-content>
+    <ion-list>
+      <ion-list-header>Select User</ion-list-header>
+      <ion-input [(ngModel)]="selectedUser"></ion-input>
+      <ion-button expand="full" (click)="validateReferral()"
+      >Validate Referral</ion-button
+  >
+  <ion-item *ngIf="newUser">
+    <ion-label> Transfer To Name: {{ newUser.name }} </ion-label>
+</ion-item>
+    </ion-list>
+  
+    <div class="ion-padding">
+      <ion-button
+        expand="block"
+        (click)="transfer()"
+        [disabled]="!selectedUser || transferringEpin"
+      >
+        <span *ngIf="!transferringEpin">Transfer Epin</span>
+        <ion-spinner name="crescent" *ngIf="transferringEpin"></ion-spinner>
+      </ion-button>
+    </div>
+  </ion-content>

@@ -9,6 +9,7 @@ import { EpinService } from "../../services/epin.service";
 export class UsedEpinPage implements OnInit {
   user = JSON.parse(localStorage.getItem("user") || "{}");
   usedEPins: any[] = [];
+
   constructor(private epinService: EpinService) {}
 
   ngOnInit() {
@@ -18,7 +19,7 @@ export class UsedEpinPage implements OnInit {
   loadUsedEPins(userId: number) {
     this.epinService.getUsedEPinReportByUser(userId).subscribe({
       next: (data) => {
-        this.usedEPins = data;
+        this.usedEPins = data.data;
       },
       error: (error) => {
         console.error("There was an error!", error);

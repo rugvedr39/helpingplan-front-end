@@ -28,6 +28,7 @@ export class SignupPage {
       }),
       upi_number: new FormControl("", Validators.required),
       referral_code: new FormControl("", Validators.required),
+      epin: new FormControl("", Validators.required),
     });
     this.populateReferralCodeFromURL();
   }
@@ -94,6 +95,9 @@ export class SignupPage {
             });
         },
         error: (error) => {
+          if (error.status === 402) {
+            alert("Invalid epin or epin cannot be used.");
+          }
           if (error.status === 409) {
             alert(`Signup failed: ${error.error.message}`);
           } else {

@@ -19,9 +19,7 @@ export class EpinService {
     );
   }
   getTransferdEPinReport(userId: number): Observable<any> {
-    return this.http.post(`${environment.backendUrl}/epin/TransferEpinReport`, {
-      transferredById: userId,
-    });
+    return this.http.post(`${environment.backendUrl}/epin/TransferEpinReport/${userId}`,{});
   }
 
   transferEpin(body: any): Observable<any> {

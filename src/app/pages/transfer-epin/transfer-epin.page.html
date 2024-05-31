@@ -14,7 +14,7 @@
         <ion-item *ngFor="let epin of unusedEPins">
             <ion-label>
                 Code: {{ epin.code }}
-                <ion-button (click)="openTransferModal(epin.code)"
+                <ion-button (click)="openTransferModal(epin.id)"
                     >Transfer</ion-button
                 >
             </ion-label>

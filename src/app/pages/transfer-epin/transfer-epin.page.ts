@@ -17,7 +17,7 @@ export class TransferEpinPage implements OnInit {
   constructor(
     private epinService: EpinService,
     private userDataService: UserDataService,
-    private modalCtrl: ModalController,
+    private modalCtrl: ModalController
   ) {}
 
   ngOnInit() {
@@ -27,13 +27,14 @@ export class TransferEpinPage implements OnInit {
   loadUnusedEPins(userId: number) {
     this.epinService.getUnusedEPinReport(userId).subscribe({
       next: (data) => {
-        this.unusedEPins = data;
+        this.unusedEPins = data.data;
       },
       error: (error) => {
         console.error("There was an error!", error);
       },
     });
   }
+
   async openTransferModal(epinCode: string) {
     const modal = await this.modalCtrl.create({
       component: TransferModalComponent,

@@ -10,48 +10,66 @@ import { EpinService } from "../services/epin.service";
 })
 export class TransferModalComponent {
   @Input() referralCode: string = "";
-  refralUsername: string = "";
+  users: any[] = [];
+  selectedUser: any = null;
+  transferringEpin: boolean = false;
   referralData: any;
+  newUser: any=null;
+
+
   constructor(
     private modalCtrl: ModalController,
     private userDataService: UserDataService,
-    private epinService: EpinService,
+    private epinService: EpinService
   ) {}
 
   validateReferral() {
     if (this.referralCode) {
-      this.userDataService.getUserByReferralCode(this.refralUsername).subscribe(
+      this.userDataService.getUserByReferralCode(this.selectedUser).subscribe(
         (data) => {
-          this.referralData = data;
+          this.newUser = data;
         },
         (error) => {
           console.error("Invalid Referral:", error);
-        },
+        }
       );
     }
   }
 
+  selectUser(user: any) {
+    this.selectedUser = user;
+  }
+
   transfer() {
     const user = JSON.parse(localStorage.getItem("user") || "{}");
-    if (this.referralCode) {
-      if (this.referralData) {
+    console.log("Transferring epin to:", this.selectedUser);
+    if (this.selectedUser === user.id) {
+      alert("You cannot transfer epin to yourself");
+      return;
+    }
+    console.log("transfer by ", user.id);
+    console.log([this.referralCode]);
+    
+    
         this.epinService
           .transferEpin({
-            code: this.referralCode,
-            transferredById: user.id,
-            transferredtoId: this.referralData.id,
+            ePinIds: [this.referralCode],
+            userId: user.id,
+            transferredToId: this.newUser.id,
           })
-          .subscribe({
-            next: (response) => {
-              alert("Transfer successful");
-              this.dismissModal();
+          .subscribe(
+            (response) => {
+                alert("Epin transferred successfully");
+                this.modalCtrl.dismiss();
+              console.log(response);
             },
-            error: (error) => {
-              console.error("Transfer failed:", error);
-            },
-          });
-      }
-    }
+            (error) => {
+              // Handle error
+              console.error(error);
+            }
+          );
+      
+    
   }
 
   dismissModal() {
