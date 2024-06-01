@@ -8,25 +8,24 @@
   </ion-header>
   
   <ion-content>
-    <ion-list>
-      <ion-list-header>Select User</ion-list-header>
-      <ion-input [(ngModel)]="selectedUser"></ion-input>
+    <ion-list class="p-2">
+      <ion-input [(ngModel)]="selectedUser" placeholder="Enter UserName"></ion-input>
       <ion-button expand="full" (click)="validateReferral()"
       >Validate Referral</ion-button
   >
   <ion-item *ngIf="newUser">
     <ion-label> Transfer To Name: {{ newUser.name }} </ion-label>
-</ion-item>
-    </ion-list>
-  
-    <div class="ion-padding">
-      <ion-button
-        expand="block"
-        (click)="transfer()"
-        [disabled]="!selectedUser || transferringEpin"
-      >
-        <span *ngIf="!transferringEpin">Transfer Epin</span>
-        <ion-spinner name="crescent" *ngIf="transferringEpin"></ion-spinner>
-      </ion-button>
-    </div>
+  </ion-item>
+  <input type="text" class="form-control" placeholder="How Much Pin To transfer" [(ngModel)]="count" *ngIf="newUser">
+<div class="ion-padding" *ngIf="newUser">
+  <ion-button
+    expand="block"
+    (click)="transfer()"
+    [disabled]="!selectedUser || transferringEpin"
+  >
+    <span *ngIf="!transferringEpin">Transfer Epin</span>
+    <ion-spinner name="crescent" *ngIf="transferringEpin"></ion-spinner>
+  </ion-button>
+</div>
+</ion-list>
   </ion-content>

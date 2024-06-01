@@ -15,6 +15,7 @@ export class TransferModalComponent {
   transferringEpin: boolean = false;
   referralData: any;
   newUser: any=null;
+count: any;
 
 
   constructor(
@@ -24,7 +25,6 @@ export class TransferModalComponent {
   ) {}
 
   validateReferral() {
-    if (this.referralCode) {
       this.userDataService.getUserByReferralCode(this.selectedUser).subscribe(
         (data) => {
           this.newUser = data;
@@ -33,7 +33,7 @@ export class TransferModalComponent {
           console.error("Invalid Referral:", error);
         }
       );
-    }
+
   }
 
   selectUser(user: any) {
@@ -47,13 +47,9 @@ export class TransferModalComponent {
       alert("You cannot transfer epin to yourself");
       return;
     }
-    console.log("transfer by ", user.id);
-    console.log([this.referralCode]);
-    
-    
         this.epinService
           .transferEpin({
-            ePinIds: [this.referralCode],
+            ePinCount:this.count ,
             userId: user.id,
             transferredToId: this.newUser.id,
           })
@@ -64,8 +60,7 @@ export class TransferModalComponent {
               console.log(response);
             },
             (error) => {
-              // Handle error
-              console.error(error);
+              alert("insufficent Epins");
             }
           );
       
