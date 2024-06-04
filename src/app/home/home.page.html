@@ -6,23 +6,24 @@
     </ion-header>
 
     <div class="ion-padding">
-        <ion-card color="secondary" routerLink="/products">
-            <ion-img
-                src="https://ayushpharmacy.co.in/wp-content/uploads/2023/05/Herbal-Canada-Jeevan-Amrit-Juice-500ml.png"
-            ></ion-img>
+        <ion-card>
+            <ion-img src="../../assets/jeevanAmrut.png"></ion-img>
             <ion-card-header>
-                <ion-card-title>Jeevan Amrut Product</ion-card-title>
+              <ion-card-title>Jeevan Amrut Product</ion-card-title>
+              <ion-card-title class="price">MRP 1500</ion-card-title>
             </ion-card-header>
-            <ion-button
+            <ion-card-content>
+              <ion-button
                 fill="solid"
                 expand="block"
-                color="light"
-                routerLink="/product"
+                color="primary"
+                (click)="gotoproduct()"
                 class="m-3"
-            >
+              >
                 See More Information
-            </ion-button>
-        </ion-card>
+              </ion-button>
+            </ion-card-content>
+          </ion-card>
         <ion-card
             class="custom-card pending-received"
             (click)="navigateToRecived()"

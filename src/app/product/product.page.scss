@@ -1,49 +1,58 @@
-ion-header {
-    --background: #4caf50; /* Green color for the header */
-    --color: white;
-}
-
 ion-card {
-    margin: 20px;
-    border-radius: 12px;
-    --inner-border-radius: 12px;
-    text-align: left; /* Align text to the left for better readability */
-    background-color: #fffbea; /* Light yellow background for a fresh look */
+  background: linear-gradient(145deg, #fffbeb, #ffedc9);
+  border-radius: 15px;
+  box-shadow: 3px 3px 10px #b5b5b5, -3px -3px 10px #ffffff;
 }
 
 ion-card-title {
-    font-size: 1.8em;
-    font-weight: bold;
-    color: #2e7d32; /* Dark green color for the title */
-    text-align: center; /* Center the title text */
-    margin-top: 10px;
+  color: #d35400;
+  font-weight: bold;
+  font-size: 1.5rem;
 }
 
 ion-card-content {
-    font-size: 1.2em;
-    color: #333;
-    padding: 20px;
+  font-size: 1.1rem;
+  color: #2d3436;
 }
 
-ion-card-content p {
-    color: #555; /* Dark grey color for the description */
-    margin-bottom: 10px;
+ion-content {
+  --background: #f5f5f5;
 }
 
-ion-card-content h2 {
-    color: #2e7d32; /* Dark green color for the benefits heading */
-    margin-bottom: 10px;
+p, ul {
+  margin: 0.5rem 0;
 }
 
-ion-card-content ul {
-    list-style-type: disc;
-    padding-left: 20px;
+ul {
+  list-style: none;
+  padding: 0;
 }
 
-ion-img {
-    border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
-    height: 250px; /* Adjust the height as needed */
-    object-fit: cover;
-    width: 100%;
+li {
+  padding-left: 1rem;
+  text-indent: -1rem;
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+
+  img {
+    max-width: 100%;
+    max-height: 300px;
+    object-fit: contain;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    animation: fadeInAnimation 1s ease-in-out;
+  }
+}
+
+@keyframes fadeInAnimation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }

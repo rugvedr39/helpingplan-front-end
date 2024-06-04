@@ -10,6 +10,7 @@ import { Router } from "@angular/router";
   styleUrls: ["home.page.scss"],
 })
 export class HomePage implements OnInit {
+
   totalCompletedPayments: number = 0;
   totalCompletedPaymentsGive: number = 0;
   totalInitiatedPayments: number = 0;
@@ -48,5 +49,10 @@ export class HomePage implements OnInit {
   }
   navigateToRecived() {
     this.router.navigate(["/amount-recived"]);
+  }
+
+  gotoproduct() {
+    this.router.navigate(["/product"], { skipLocationChange: true });
+
   }
 }
