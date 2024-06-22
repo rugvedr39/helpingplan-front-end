@@ -13,6 +13,7 @@ import { environment } from "src/environments/environment";
 })
 export class MyAccountPage implements OnInit {
   newPassword: any;
+oldPassword: any;
   constructor(private router: Router, private modalCtrl: ModalController, private http:HttpClient) {}
 
   navigateTo(page: string) {
@@ -55,14 +56,19 @@ export class MyAccountPage implements OnInit {
 
   onChangePassword() {
     const user = JSON.parse(localStorage.getItem('user')||'')
-    this.http.put(`${environment.backendUrl}/admin/users/${user.id}`,{
-      password: this.newPassword
-    }).subscribe((data:any) =>{
-      if (data.message=="User updated successfully") {
-        alert("User Password Changed successfully")
-        this.modalCtrl.dismiss();
-      }
-    });
+
+    if (user.password === this.oldPassword) {
+      this.http.put(`${environment.backendUrl}/admin/users/${user.id}`,{
+        password: this.newPassword
+      }).subscribe((data:any) =>{
+        if (data.message=="User updated successfully") {
+          alert("User Password Changed successfully")
+          this.modalCtrl.dismiss();
+        }
+      });
+    }else{
+      alert('Old Password is invalid')
+    }
   }
 
 }
