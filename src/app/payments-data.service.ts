@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { TransactionService } from "./transaction.service";
-import { BehaviorSubject } from "rxjs";
+import { BehaviorSubject, forkJoin } from "rxjs";
+import { tap, map } from "rxjs/operators";
 
 @Injectable({
   providedIn: "root",
@@ -20,6 +21,7 @@ export class PaymentsDataService {
   get totalInitiatedPayments$() {
     return this._totalInitiatedPayments$.asObservable();
   }
+
   get totalCompletedPaymentsGive$() {
     return this._totalCompletedPaymentsGive$.asObservable();
   }
@@ -28,36 +30,57 @@ export class PaymentsDataService {
     return this._totalInitiatedPaymentsGive$.asObservable();
   }
 
+
+  // ... getters remain the same ...
+
   constructor(private transactionService: TransactionService) {
     const user = JSON.parse(localStorage.getItem("user") || "{}");
     this.fetchDataAndCalculateTotals(user.id);
   }
 
   fetchDataAndCalculateTotals(userId: any) {
-    this.transactionService
-      .getTransactionsRecived(userId)
-      .subscribe((data: any) => {
-        this._transactionData$.next(data);
-        let a = false;
-        this.calculateTotals(data, a);
-      });
-    this.transactionService.getTransactions(userId).subscribe((data: any) => {
-      this._transactionDataGive$.next(data);
-      let a = true;
-      this.calculateTotals(data, a);
-    });
+    forkJoin({
+      received: this.transactionService.getTransactionsRecived(userId),
+      given: this.transactionService.getTransactions(userId)
+    }).pipe(
+      tap(({ received, given }) => {
+       
+      }),
+      map(({ received, given }) => {
+        this.calculateTotals(this.ensureArray(received), false);
+        this.calculateTotals(this.ensureArray(given), true);
+        return { received, given };
+      })
+    ).subscribe(
+      ({ received, given }) => {
+        this._transactionData$.next(this.ensureArray(received));
+        this._transactionDataGive$.next(this.ensureArray(given));
+      },
+      error => console.error('Error fetching transactions:', error)
+    );
   }
 
-  calculateTotals(transactions: any[], b: boolean) {
+  private ensureArray(data: any): any[] {
+    if (Array.isArray(data)) {
+      return data;
+    } else if (typeof data === 'object' && data !== null) {
+      return Object.values(data);
+    } else {
+      console.warn('Unexpected data format:', data);
+      return [];
+    }
+  }
+
+  calculateTotals(transactions: any[], isGive: boolean) {
     const totalCompletedPayments = transactions
-      .filter((transaction) => transaction.status === "Completed")
+      .filter((transaction) => transaction.status == "Completed")
       .reduce((acc, transaction) => acc + parseFloat(transaction.amount), 0);
 
     const totalInitiatedPayments = transactions
       .filter((transaction) => transaction.status === "initiate")
       .reduce((acc, transaction) => acc + parseFloat(transaction.amount), 0);
 
-    if (b == true) {
+    if (isGive) {
       this._totalCompletedPaymentsGive$.next(totalCompletedPayments);
       this._totalInitiatedPaymentsGive$.next(totalInitiatedPayments);
     } else {
