@@ -69,7 +69,7 @@ export class SignupPage {
       this.userDataService.createUser(this.signupForm.value).subscribe({
         next: (data) => {
           console.log(data);
-          alert(`Your UserId is ${data.username}`);
+          alert(`Your UserId is ${data.username} and your password is ${data.password}`);
           this.userDataService
             .login({
               username: data.username,
