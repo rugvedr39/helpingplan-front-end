@@ -12,12 +12,15 @@
   
     <div *ngIf="dataLoaded" class="ion-padding">
 
-        <div class="alert alert-danger" role="alert" *ngIf="totalInitiatedPaymentsGive!==0">
+        <div class="alert alert-danger animate__animated animate__flash animate__slower animate__infinite" role="alert" *ngIf="totalInitiatedPaymentsGive!==0">
             Please Pay the {{this.totalInitiatedPaymentsGive}}  For Upgrading the Account
         </div>
 
       <ion-card>
-        <ion-img src="../../assets/jeevanAmrut.png"></ion-img>
+        <div class="d-flex">
+            <ion-img class="d-inline" src="../../assets/jeevanAmrut.png"></ion-img>
+            <ion-img class="d-inline" src="../../assets/new.jpg"></ion-img>
+        </div>
         <ion-card-header>
           <ion-card-title>Jeevan Amrut Product</ion-card-title>
           <ion-card-title class="price">MRP 1500</ion-card-title>
