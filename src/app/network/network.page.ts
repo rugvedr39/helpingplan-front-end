@@ -24,11 +24,14 @@ export class NetworkPage implements OnInit {
     this.loadUsers();
   }
 
-  loadUsers(event?:any) {
+  loadUsers(event?: any) {
     this.http.get(`${environment.backendUrl}/transaction/top-receivers?page=${this.currentPage}&pageSize=${this.pageSize}`)
       .subscribe((response: any) => {
-        this.users = this.users.concat(response.users);
-        this.totalCount = response.totalCount;
+        const existingUserIds = new Set(this.users.map(user => user.receiver_id));
+        const newUsers = response.users.filter((user: any) => !existingUserIds.has(user.receiver_id));
+
+        this.users = this.users.concat(newUsers);
+        this.totalCount = response.totalCount-5;
         this.currentPage++;
 
         if (event) {
