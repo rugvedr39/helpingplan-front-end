@@ -31,7 +31,7 @@ export class NetworkPage implements OnInit {
         const newUsers = response.users.filter((user: any) => !existingUserIds.has(user.receiver_id));
 
         this.users = this.users.concat(newUsers);
-        this.totalCount = response.totalCount-5;
+        this.totalCount = response.totalCount;
         this.currentPage++;
 
         if (event) {
