@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  backendUrl: "http://localhost:3000/api",
-  // backendUrl: "https://helpingplan.online/api",
+  // backendUrl: "http://localhost:3000/api",
+  backendUrl: "https://helpingplan.online/api",
   domain: "http://localhost:8100",
 };

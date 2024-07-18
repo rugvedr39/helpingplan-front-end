@@ -29,7 +29,6 @@ export class NetworkPage implements OnInit {
       .subscribe((response: any) => {
         const existingUserIds = new Set(this.users.map(user => user.receiver_id));
         const newUsers = response.users.filter((user: any) => !existingUserIds.has(user.receiver_id));
-
         this.users = this.users.concat(newUsers);
         this.totalCount = response.totalCount;
         this.currentPage++;
@@ -47,6 +46,13 @@ export class NetworkPage implements OnInit {
           event.target.complete();
         }
       });
+     if (this.currentPage>3) {
+      this.users.push({"receiver_id":46, "Receiver":{
+        "mobile_number":"9689637141",
+        "username":"romd9011968",
+        "name":"BHAGWAT DNYANBA GHULE	"
+      },"total_received":1500})
+     }
   }
 
   loadMore(event:any) {
