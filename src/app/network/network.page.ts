@@ -46,7 +46,7 @@ export class NetworkPage implements OnInit {
           event.target.complete();
         }
       });
-     if (this.currentPage>3) {
+     if (this.currentPage==3) {
       this.users.push({"receiver_id":46, "Receiver":{
         "mobile_number":"9689637141",
         "username":"romd9011968",
