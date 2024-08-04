@@ -15,7 +15,7 @@ export class NetworkPage implements OnInit {
 
   users: any[] = [];
   currentPage = 1;
-  pageSize = 10;
+  pageSize = 30;
   totalCount = 0;
 
   constructor(private http: HttpClient) {}
@@ -28,7 +28,7 @@ export class NetworkPage implements OnInit {
     this.http.get(`${environment.backendUrl}/transaction/top-receivers?page=${this.currentPage}&pageSize=${this.pageSize}`)
       .subscribe((response: any) => {
         const existingUserIds = new Set(this.users.map(user => user.receiver_id));
-        const newUsers = response.users.filter((user: any) => !existingUserIds.has(user.receiver_id));
+        const newUsers = response.users
         this.users = this.users.concat(newUsers);
         this.totalCount = response.totalCount;
         this.currentPage++;
@@ -46,13 +46,6 @@ export class NetworkPage implements OnInit {
           event.target.complete();
         }
       });
-     if (this.currentPage==3) {
-      this.users.push({"receiver_id":46, "Receiver":{
-        "mobile_number":"9689637141",
-        "username":"romd9011968",
-        "name":"BHAGWAT DNYANBA GHULE	"
-      },"total_received":1500})
-     }
   }
 
   loadMore(event:any) {
