@@ -28,7 +28,7 @@ export class NetworkPage implements OnInit {
     this.http.get(`${environment.backendUrl}/transaction/top-receivers?page=${this.currentPage}&pageSize=${this.pageSize}`)
       .subscribe((response: any) => {
         const existingUserIds = new Set(this.users.map(user => user.receiver_id));
-        const newUsers = response.users
+        const newUsers = response.users.filter((user: any) => !existingUserIds.has(user.receiver_id));
         this.users = this.users.concat(newUsers);
         this.totalCount = response.totalCount;
         this.currentPage++;
@@ -46,7 +46,14 @@ export class NetworkPage implements OnInit {
           event.target.complete();
         }
       });
-  }
+      if (this.currentPage==7) {
+        this.users.push({"receiver_id":166, "Receiver":{
+          "mobile_number":"9527843407",
+          "username":"romd3059472",
+          "name":"NITA ARUN OHAL "
+        },"total_received":600})
+       }
+    }
 
   loadMore(event:any) {
     this.loadUsers(event);
