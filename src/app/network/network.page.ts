@@ -46,13 +46,13 @@ export class NetworkPage implements OnInit {
           event.target.complete();
         }
       });
-      if (this.currentPage==6) {
-        this.users.push({"receiver_id":166, "Receiver":{
-          "mobile_number":"9527843407",
-          "username":"romd3059472",
-          "name":"NITA ARUN OHAL "
-        },"total_received":600})
-       }
+      // if (this.currentPage==6) {
+      //   this.users.push({"receiver_id":166, "Receiver":{
+      //     "mobile_number":"9527843407",
+      //     "username":"romd3059472",
+      //     "name":"NITA ARUN OHAL "
+      //   },"total_received":600})
+      //  }
     }
 
   loadMore(event:any) {
