@@ -20,6 +20,10 @@ export class UserDataService {
     return this.http.post(`${environment.backendUrl}/auth/signup`, userData);
   }
 
+  getComunicationData(): Observable<any> {
+    return this.http.get(`${environment.backendUrl}/admin/getAdminDetails`);
+  }
+
   getUserByReferralCode(referralCode: string): Observable<any> {
     return this.http.get(`${environment.backendUrl}/auth/user/${referralCode}`);
   }

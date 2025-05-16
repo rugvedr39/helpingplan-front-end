@@ -1,36 +1,159 @@
-ion-card {
-    display: block;
-    margin: 10px;
-    border-radius: 8px; // Adds rounded corners
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); // Subtle shadow for depth
-    overflow: hidden; // Ensures nothing leaks outside the border radius
+.share-card {
+    border-radius: 16px;
+    overflow: hidden;
+    margin: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+    }
 
-    ion-card-header {
-        background-color: #3273dc; // A nice blue header
+    .share-header {
+        background: linear-gradient(135deg, #3a7bd5, #00d2ff);
         color: white;
-        padding: 15px;
-        font-size: 18px;
         text-align: center;
+        padding: 24px 16px;
+        
+        .share-icon-container {
+            width: 48px;
+            height: 48px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px;
+            
+            .share-icon {
+                font-size: 24px;
+            }
+        }
+        
+        .share-title {
+            font-weight: 700;
+            font-size: 1.4rem;
+            margin-bottom: 4px;
+        }
+        
+        .share-subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
     }
 
-    ion-card-content {
+    .share-content {
         padding: 20px;
-        background-color: #f4f4f4; // Light grey background for the content area
-        color: #363636; // Dark grey text for better readability
-
-        a {
-            color: #3273dc; // Link color matches the header
-            text-decoration: none; // Removes underline from links
-            font-weight: bold;
+        background: white;
+        
+        .link-container {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 16px;
+            
+            .link-label {
+                font-size: 0.8rem;
+                color: #6c757d;
+                margin-bottom: 6px;
+            }
+            
+            .link-value {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                font-size: 0.9rem;
+                color: #3a7bd5;
+                font-weight: 500;
+                word-break: break-all;
+                cursor: pointer;
+                transition: color 0.2s ease;
+                
+                &:hover {
+                    color: #2a5db0;
+                }
+                
+                .copy-icon {
+                    font-size: 18px;
+                    color: #6c757d;
+                    margin-left: 8px;
+                }
+            }
         }
-
-        ion-button {
-            --background: #ff3860; // Bright red for the button background
-            --background-activated: #ff2b56; // A slightly darker red when button is pressed
-            --background-hover: #ff3e6c; // A lighter red for hover effect
-            --border-radius: 6px; // Rounded corners for the button
-            width: 100%; // Full width button
-            margin-top: 15px;
+        
+        .share-buttons {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+            
+            ion-button {
+                --border-radius: 8px;
+                --padding-top: 12px;
+                --padding-bottom: 12px;
+                font-weight: 500;
+                margin: 0;
+                flex: 1;
+            }
+            
+            .copy-button {
+                --background: #3a7bd5;
+                --background-activated: #2a5db0;
+                --background-hover: #4a8be5;
+            }
+            
+            .share-button {
+                --color: #3a7bd5;
+                --border-color: #3a7bd5;
+            }
+        }
+        
+        .social-share {
+            .social-label {
+                font-size: 0.8rem;
+                color: #6c757d;
+                text-align: center;
+                margin-bottom: 8px;
+            }
+            
+            .social-icons {
+                display: flex;
+                justify-content: center;
+                gap: 8px;
+                
+                ion-button {
+                    --padding-start: 8px;
+                    --padding-end: 8px;
+                    --border-radius: 50%;
+                    width: 40px;
+                    height: 40px;
+                    
+                    ion-icon {
+                        font-size: 20px;
+                    }
+                }
+            }
         }
     }
+}
+
+/* Color variables for social icons */
+ion-icon[name="logo-facebook"] {
+    color: #3b5998 !important;
+}
+
+ion-icon[name="paper-plane"] {
+    color: #0088cc !important;
+}
+
+/* Animation for copy feedback */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.copied-feedback {
+    animation: pulse 0.3s ease;
+    color: #28a745 !important;
 }

@@ -1,21 +1,50 @@
 <!-- share-card.component.html -->
-<ion-card>
-    <ion-card-header>
-        <ion-card-title>Share This Link!</ion-card-title>
+<ion-card class="share-card">
+    <ion-card-header class="share-header">
+        <div class="share-icon-container">
+            <ion-icon name="share-social" class="share-icon"></ion-icon>
+        </div>
+        <ion-card-title class="share-title">Invite Friends</ion-card-title>
+        <ion-card-subtitle class="share-subtitle">Earn rewards by sharing your link</ion-card-subtitle>
     </ion-card-header>
-    <ion-card-content>
-        <ion-item lines="none">
-            <ion-label class="ion-text-wrap">
-                <a [href]="baseUrl + '/signup?token=' + user.username">
-                    {{ baseUrl }}/signup?token={{ user.username }}
-                </a>
-            </ion-label>
-        </ion-item>
-        <ion-button
-            expand="block"
-            (click)="copyLink(baseUrl + '/signup?token=' + user.username)"
-        >
-            Copy Link
-        </ion-button>
+
+    <ion-card-content class="share-content">
+        <div class="link-container">
+            <div class="link-label">Your referral link:</div>
+            <div class="link-value" (click)="copyLink()">
+                {{ baseUrl }}/signup?token={{ user.username }}
+                <ion-icon name="copy-outline" class="copy-icon"></ion-icon>
+            </div>
+        </div>
+
+        <div class="share-buttons">
+            <ion-button expand="block" class="copy-button" (click)="copyLink()">
+                <ion-icon slot="start" name="copy"></ion-icon>
+                Copy Link
+            </ion-button>
+            
+            <ion-button expand="block" fill="outline" class="share-button" (click)="shareViaOther()">
+                <ion-icon slot="start" name="share"></ion-icon>
+                Share Via...
+            </ion-button>
+        </div>
+
+        <div class="social-share">
+            <div class="social-label">Quick share:</div>
+            <div class="social-icons">
+                <ion-button fill="clear" (click)="shareViaWhatsApp()">
+                    <ion-icon name="logo-whatsapp" color="success"></ion-icon>
+                </ion-button>
+                <ion-button fill="clear" (click)="shareViaTelegram()">
+                    <ion-icon name="paper-plane" color="primary"></ion-icon>
+                </ion-button>
+                <ion-button fill="clear" (click)="shareViaFacebook()">
+                    <ion-icon name="logo-facebook" color="facebook"></ion-icon>
+                </ion-button>
+                <ion-button fill="clear" (click)="shareViaEmail()">
+                    <ion-icon name="mail" color="medium"></ion-icon>
+                </ion-button>
+            </div>
+        </div>
     </ion-card-content>
 </ion-card>

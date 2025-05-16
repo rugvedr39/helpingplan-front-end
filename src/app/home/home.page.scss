@@ -1,177 +1,394 @@
-ion-card.custom-card {
-    width: 100%;
-    max-width: 300px;
-    margin: 0 auto;
-    border-radius: 12px;
-    overflow: hidden; // Ensures that all inner elements adhere to the border radius
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    transition:
-        transform 0.3s ease,
-        box-shadow 0.3s ease;
-    background: #ffffff; // Default white background
+.dashboard-content {
+  --background: #f5f7fa;
+}
 
-    &:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+.dashboard-header {
+  ion-toolbar {
+    --background: linear-gradient(135deg, #3a7bd5, #00d2ff);
+    --color: white;
+    
+    ion-title {
+      font-weight: 600;
     }
-
-    ion-card-header {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 12px;
-    }
-
-    ion-card-title {
-        text-align: center;
-        font-weight: bold;
-    }
-
-    .amount-text {
-        text-align: center;
-        font-size: 1.4em;
-    }
-
-    .large-icon {
-        font-size: 2em;
-        margin-right: 8px;
-        vertical-align: middle;
-    }
+  }
 }
 
-// Define unique gradients for card headers and add a complementary bottom color
-.pending-received ion-card-header {
-    background: linear-gradient(
-        to top right,
-        #56ab2f,
-        #a8e063
-    ); // Green gradient
-}
-.pending-received ion-card-content {
-    background: #f0f9ec; // Light green at the bottom
-}
-
-.pending-give ion-card-header {
-    background: linear-gradient(to top right, #007adf, #00ecbc); // Blue to cyan
-}
-.pending-give ion-card-content {
-    background: #e0f7fa; // Light cyan at the bottom
-}
-
-.received-help ion-card-header {
-    background: linear-gradient(
-        to top right,
-        #fe8c00,
-        #f83600
-    ); // Orange to red
-}
-.received-help ion-card-content {
-    background: #fff0e8; // Light orange at the bottom
-}
-
-.give-help ion-card-header {
-    background: linear-gradient(
-        to top right,
-        #654ea3,
-        #eaafc8
-    ); // Purple to pink
-}
-.give-help ion-card-content {
-    background: #f3e6f9; // Light purple at the bottom
-}
-
-.total-team ion-card-header {
-    background: linear-gradient(
-        to top right,
-        #4ca1af,
-        #c4e0e5
-    ); // Teal to light blue
-}
-.total-team ion-card-content {
-    background: #e6f8ff; // Very light blue at the bottom
-}
-.ion-padding {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    padding: 20px;
-    justify-content: center;
-}
-
-@media (max-width: 600px) {
-    .ion-padding {
-        grid-template-columns: 1fr;
-        gap: 10px;
-    }
-}
-
-
-ion-card {
-    border-radius: 15px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
-    overflow: hidden;
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+  
+  ion-spinner {
+    width: 48px;
+    height: 48px;
   }
   
-  ion-img {
-    width: 100%;
-    height: 300px;
-    object-fit: contain;
-    background-color: #fff;
-    padding: 1rem;
-    backface-visibility: visible;
-    perspective: 400px;
-  }    
-  ion-card-header {
-    padding: 1rem;
-    background-color: #f4f4f4;
+  .loading-text {
+    margin-top: 16px;
+    color: var(--ion-color-medium);
+  }
+}
+
+.payment-alert {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, #ff416c, #ff4b2b);
+  color: white;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin: 16px;
+  box-shadow: 0 4px 12px rgba(255, 75, 43, 0.3);
+  
+  .alert-icon {
+    font-size: 24px;
+    margin-right: 12px;
   }
   
-  ion-card-title {
-    font-size: 1.2rem;
+  .alert-text {
+    flex: 1;
+    font-size: 14px;
+  }
+  
+  ion-button {
+    --color: white;
+    --background: rgba(255, 255, 255, 0.2);
+  }
+}
+
+.featured-product-card {
+  border-radius: 16px;
+  overflow: hidden;
+  margin: 16px;
+  box-shadow: 0 8px 24px rgba(58, 123, 213, 0.15);
+  position: relative;
+  
+  .product-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: #ff4757;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
     font-weight: 600;
-    color: #333;
-    margin-bottom: 0.5rem;
+    z-index: 2;
+  }
   
-    &.price {
-      color: #d35400;
-      font-weight: bold;
+  .product-image {
+    height: 180px;
+    object-fit: contain;
+    background: white;
+    padding: 24px;
+  }
+  
+  .product-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #2f3542;
+  }
+  
+  .product-subtitle {
+    color: #747d8c;
+    font-size: 0.9rem;
+  }
+  
+  .price-container {
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    
+    .original-price {
+      text-decoration: line-through;
+      color: #747d8c;
+      margin-right: 8px;
+    }
+    
+    .current-price {
+      font-weight: 700;
+      color: #2f3542;
+      font-size: 1.2rem;
+    }
+    
+    .discount-badge {
+      background: #2ed573;
+      color: white;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      margin-left: 8px;
+    }
+  }
+  
+  .product-button {
+    --border-radius: 8px;
+    --box-shadow: 0 4px 12px rgba(58, 123, 213, 0.3);
+    font-weight: 600;
+    margin-top: 8px;
+  }
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+  padding: 0 16px 16px;
+}
+
+.stat-card {
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+  &:active {
+    transform: scale(0.98);
+  }
+  
+  ion-card-header {
+    padding: 16px 16px 8px;
+    
+    .stat-icon-container {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 8px;
+    }
+    
+    .stat-icon {
+      font-size: 20px;
+    }
+    
+    .stat-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #2f3542;
     }
   }
   
   ion-card-content {
-    padding: 1rem;
-  }
-  
-  ion-button {
-    --border-radius: 25px;
-    --box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
-    font-weight: 500;
-  }
-  
-  @keyframes fadeInAnimation {
-    0% {
-      opacity: 0;
-      transform: rotate(0deg);
+    padding: 8px 16px 16px;
+    
+    .stat-amount {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 4px;
     }
-    100% {
-      opacity: 1;
-      transform: rotate(360deg);
+    
+    .stat-info {
+      font-size: 0.75rem;
+      color: #747d8c;
     }
   }
   
-  @keyframes flipAnimation {
-    0% {
-      transform: perspective(400px) rotateY(0);
-      opacity: 1;
+  &.pending-received {
+    .stat-icon-container {
+      background: rgba(86, 171, 47, 0.1);
+      color: #56ab2f;
     }
-    40% {
-      transform: perspective(400px) rotateY(180deg);
-    }
-    60% {
-      transform: perspective(400px) rotateY(180deg);
-    }
-    100% {
-      transform: perspective(400px) rotateY(360deg);
-      opacity: 1;
+    
+    ion-card-header {
+      background: linear-gradient(135deg, rgba(86, 171, 47, 0.1), rgba(168, 224, 99, 0.1));
     }
   }
+  
+  &.pending-give {
+    .stat-icon-container {
+      background: rgba(0, 122, 223, 0.1);
+      color: #007adf;
+    }
+    
+    ion-card-header {
+      background: linear-gradient(135deg, rgba(0, 122, 223, 0.1), rgba(0, 236, 188, 0.1));
+    }
+  }
+  
+  &.received-help {
+    .stat-icon-container {
+      background: rgba(254, 140, 0, 0.1);
+      color: #fe8c00;
+    }
+    
+    ion-card-header {
+      background: linear-gradient(135deg, rgba(254, 140, 0, 0.1), rgba(248, 54, 0, 0.1));
+    }
+  }
+  
+  &.give-help {
+    .stat-icon-container {
+      background: rgba(101, 78, 163, 0.1);
+      color: #654ea3;
+    }
+    
+    ion-card-header {
+      background: linear-gradient(135deg, rgba(101, 78, 163, 0.1), rgba(234, 175, 200, 0.1));
+    }
+  }
+  
+  &.total-team {
+    .stat-icon-container {
+      background: rgba(76, 161, 175, 0.1);
+      color: #4ca1af;
+    }
+    
+    ion-card-header {
+      background: linear-gradient(135deg, rgba(76, 161, 175, 0.1), rgba(196, 224, 229, 0.1));
+    }
+  }
+  
+  &.quick-actions {
+    .stat-icon-container {
+      background: rgba(155, 89, 182, 0.1);
+      color: #9b59b6;
+    }
+    
+    ion-card-header {
+      background: linear-gradient(135deg, rgba(155, 89, 182, 0.1), rgba(142, 68, 173, 0.1));
+    }
+    
+    ion-button {
+      --color: #2f3542;
+      --background: transparent;
+      margin: 4px 0;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .stats-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .featured-product-card {
+    margin: 8px;
+  }
+  
+  .payment-alert {
+    margin: 8px;
+    flex-direction: column;
+    text-align: center;
+    
+    .alert-icon {
+      margin-right: 0;
+      margin-bottom: 8px;
+    }
+    
+    ion-button {
+      margin-top: 8px;
+    }
+  }
+}
+
+.community-section {
+  border-radius: 16px;
+  margin: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  
+  ion-card-header {
+    background: linear-gradient(135deg, #3a7bd5, #00d2ff);
+    color: white;
+    padding: 16px;
+    
+    .section-title {
+      display: flex;
+      align-items: center;
+      font-weight: 600;
+      font-size: 1.2rem;
+      
+      .title-icon {
+        margin-right: 10px;
+        font-size: 1.4rem;
+      }
+    }
+    
+    ion-card-subtitle {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.85rem;
+    }
+  }
+  
+  ion-card-content {
+    padding: 0;
+  }
+  
+  .community-item {
+    --padding-start: 16px;
+    --padding-end: 16px;
+    --inner-padding-end: 0;
+    --min-height: 72px;
+    transition: background-color 0.2s ease;
+    
+    &:active {
+      background-color: rgba(0, 0, 0, 0.04);
+    }
+    
+    .platform-icon {
+      font-size: 1.8rem;
+      margin-right: 12px;
+    }
+    
+    h2 {
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 4px;
+      color: #2f3542;
+    }
+    
+    p {
+      font-size: 0.85rem;
+      color: #747d8c;
+      margin: 0;
+    }
+    
+    ion-badge {
+      font-weight: 500;
+      padding: 6px 8px;
+    }
+  }
+  
+  .zoom-item {
+    .platform-icon {
+      color: #2d8cff;
+    }
+    
+    border-bottom: 1px dashed #e0e0e0;
+  }
+  
+  .whatsapp-item {
+    .platform-icon {
+      color: #25d366;
+    }
+  }
+  
+  .community-footer {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    background: #f9f9f9;
+    font-size: 0.75rem;
+    color: #747d8c;
+    
+    .info-icon {
+      margin-right: 8px;
+      font-size: 1rem;
+      color: #3a7bd5;
+    }
+  }
+}
+
+/* Animation for active state */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+  100% { transform: scale(1); }
+}
+
+.community-item:active {
+  animation: pulse 0.3s ease;
+}

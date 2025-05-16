@@ -1,97 +1,192 @@
-<ion-content [fullscreen]="true">
-    <ion-header collapse="condense">
-      <ion-toolbar>
-        <ion-title size="large">Home</ion-title>
-      </ion-toolbar>
-    </ion-header>
-  
-    <div *ngIf="!dataLoaded" class="ion-text-center">
-      <ion-spinner></ion-spinner>
-      <p>Loading data...</p>
+<ion-content [fullscreen]="true" class="dashboard-content">
+  <!-- Header with user info -->
+  <ion-header collapse="condense" class="dashboard-header">
+    <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+        <ion-button>
+          <ion-icon slot="icon-only" name="person-circle"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <ion-title size="large">Dashboard</ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="refreshData()">
+          <ion-icon slot="icon-only" name="refresh"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <!-- Loading State -->
+  <div *ngIf="!dataLoaded" class="loading-container ion-text-center">
+    <ion-spinner name="crescent" color="primary"></ion-spinner>
+    <p class="loading-text">Loading your data...</p>
+  </div>
+
+  <!-- Content when loaded -->
+  <div *ngIf="dataLoaded" class="dashboard-container">
+    <!-- Payment Alert Banner -->
+    <div *ngIf="totalInitiatedPaymentsGive!==0" class="payment-alert">
+      <ion-icon name="alert-circle" class="alert-icon"></ion-icon>
+      <span class="alert-text">Please complete your payment of {{totalInitiatedPaymentsGive | currency:'INR'}} to upgrade your account</span>
+      <ion-button fill="clear" size="small" (click)="navigateToActive()">
+        Pay Now
+      </ion-button>
     </div>
-  
-    <div *ngIf="dataLoaded" class="ion-padding">
 
-        <div class="alert alert-danger animate__animated animate__flash animate__slower animate__infinite" role="alert" *ngIf="totalInitiatedPaymentsGive!==0">
-            Please Pay the {{this.totalInitiatedPaymentsGive}}  For Upgrading the Account
+    <!-- Featured Product Card -->
+    <ion-card class="featured-product-card">
+      <div class="product-badge">Featured</div>
+      <ion-img src="../../assets/jeevanAmrut.png" class="product-image"></ion-img>
+      <ion-card-header>
+        <ion-card-title class="product-title">Jeevan Amrut Product</ion-card-title>
+        <ion-card-subtitle class="product-subtitle">Get Any One Product Only</ion-card-subtitle>
+        <div class="price-container">
+          <span class="original-price">₹2000</span>
+          <span class="current-price">₹1500</span>
+          <span class="discount-badge">25% OFF</span>
         </div>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-button expand="block" color="primary" (click)="gotoproduct()" class="product-button">
+          View Details
+          <ion-icon slot="end" name="arrow-forward"></ion-icon>
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
 
-      <ion-card>
-        <div class="d-flex">
-            <ion-img class="d-inline" src="../../assets/jeevanAmrut.png"></ion-img>
-        </div>
+    <!-- Community Engagement Section -->
+<ion-card class="community-section">
+  <ion-card-header>
+    <ion-card-title class="section-title">
+      <ion-icon name="people-circle" class="title-icon"></ion-icon>
+      Join Our Community
+    </ion-card-title>
+    <ion-card-subtitle>Connect with us for updates and support</ion-card-subtitle>
+  </ion-card-header>
+
+  <ion-card-content>
+    <!-- Zoom Meeting Card -->
+    <ion-item class="community-item zoom-item" button (click)="joinZoom()" lines="none">
+      <ion-icon slot="start" name="videocam" class="platform-icon"></ion-icon>
+      <ion-label>
+        <h2>{{zoomMeetingTitle}}</h2>
+        <p>{{zoomTime}}</p>
+      </ion-label>
+      <ion-badge color="primary" slot="end">Live</ion-badge>
+    </ion-item>
+
+    <!-- WhatsApp Group Card -->
+    <ion-item class="community-item whatsapp-item" button (click)="joinWhatsApp()" lines="none">
+      <ion-icon slot="start" name="logo-whatsapp" class="platform-icon"></ion-icon>
+      <ion-label>
+        <h2>Official WhatsApp Group</h2>
+        <p>24/7 Support & Updates</p>
+      </ion-label>
+      <ion-badge color="success" slot="end">Active</ion-badge>
+    </ion-item>
+
+    <!-- Additional Info -->
+    <div class="community-footer">
+      <ion-icon name="information-circle" class="info-icon"></ion-icon>
+      <span>Links will open in respective apps</span>
+    </div>
+  </ion-card-content>
+</ion-card>
+
+    <!-- Stats Grid -->
+    <div class="stats-grid">
+      <!-- Pending Received Help -->
+      <ion-card class="stat-card pending-received" (click)="navigateToRecived()">
         <ion-card-header>
-          <ion-card-title>Jeevan Amrut Product</ion-card-title>
-          <ion-card-title class="fs-6">Get Any One Product Only</ion-card-title>
-          <ion-card-title class="price">MRP 1500</ion-card-title>
+          <div class="stat-icon-container">
+            <ion-icon name="time-outline" class="stat-icon"></ion-icon>
+          </div>
+          <ion-card-title class="stat-title">Pending Received</ion-card-title>
         </ion-card-header>
         <ion-card-content>
-          <ion-button fill="solid" expand="block" color="primary" (click)="gotoproduct()" class="m-3">
-            See More Information
+          <div class="stat-amount">{{ totalInitiatedPayments | currency:'INR' }}</div>
+          <div class="stat-info">Awaiting confirmation</div>
+        </ion-card-content>
+      </ion-card>
+
+      <!-- Pending Give Help -->
+      <ion-card class="stat-card pending-give" (click)="navigateToActive()">
+        <ion-card-header>
+          <div class="stat-icon-container">
+            <ion-icon name="time-outline" class="stat-icon"></ion-icon>
+          </div>
+          <ion-card-title class="stat-title">Pending Give</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <div class="stat-amount">{{ totalInitiatedPaymentsGive | currency:'INR' }}</div>
+          <div class="stat-info">Payment required</div>
+        </ion-card-content>
+      </ion-card>
+
+      <!-- Received Help -->
+      <ion-card class="stat-card received-help" (click)="navigateToRecived()">
+        <ion-card-header>
+          <div class="stat-icon-container">
+            <ion-icon name="checkmark-done-outline" class="stat-icon"></ion-icon>
+          </div>
+          <ion-card-title class="stat-title">Received Help</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <div class="stat-amount">{{ totalCompletedPayments | currency:'INR' }}</div>
+          <div class="stat-info">Total received</div>
+        </ion-card-content>
+      </ion-card>
+
+      <!-- Given Help -->
+      <ion-card class="stat-card give-help" (click)="navigateToActive()">
+        <ion-card-header>
+          <div class="stat-icon-container">
+            <ion-icon name="checkmark-done-outline" class="stat-icon"></ion-icon>
+          </div>
+          <ion-card-title class="stat-title">Given Help</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <div class="stat-amount">{{ totalCompletedPaymentsGive | currency:'INR' }}</div>
+          <div class="stat-info">Total given</div>
+        </ion-card-content>
+      </ion-card>
+
+      <!-- Total Team -->
+      <ion-card class="stat-card total-team" (click)="navigateToLevelWiseChart()">
+        <ion-card-header>
+          <div class="stat-icon-container">
+            <ion-icon name="people-outline" class="stat-icon"></ion-icon>
+          </div>
+          <ion-card-title class="stat-title">Team Members</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <div class="stat-amount">{{ Total_member }}</div>
+          <div class="stat-info">In your network</div>
+        </ion-card-content>
+      </ion-card>
+
+      <!-- Quick Actions -->
+      <!-- <ion-card class="stat-card quick-actions">
+        <ion-card-header>
+          <div class="stat-icon-container">
+            <ion-icon name="flash-outline" class="stat-icon"></ion-icon>
+          </div>
+          <ion-card-title class="stat-title">Quick Actions</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-button expand="block" fill="clear" size="small">
+            <ion-icon slot="start" name="add-circle"></ion-icon>
+            Invite Members
+          </ion-button>
+          <ion-button expand="block" fill="clear" size="small">
+            <ion-icon slot="start" name="document-text"></ion-icon>
+            View Reports
           </ion-button>
         </ion-card-content>
-      </ion-card>
-  
-      <ion-card class="custom-card pending-received" (click)="navigateToRecived()">
-        <ion-card-header>
-          <ion-card-title>
-            <ion-icon name="cash-outline" class="large-icon"></ion-icon>
-            Total Pending Received Help
-          </ion-card-title>
-        </ion-card-header>
-        <ion-card-content class="amount-text text-center">
-          {{ totalInitiatedPayments | currency:'INR' }}
-        </ion-card-content>
-      </ion-card>
-  
-      <ion-card class="custom-card pending-give" (click)="navigateToActive()">
-        <ion-card-header>
-          <ion-card-title>
-            <ion-icon name="cash-outline" class="large-icon"></ion-icon>
-            Total Pending Give Help
-          </ion-card-title>
-        </ion-card-header>
-        <ion-card-content class="amount-text text-center">
-          {{ totalInitiatedPaymentsGive | currency:'INR' }}
-        </ion-card-content>
-      </ion-card>
-  
-      <ion-card class="custom-card received-help" (click)="navigateToRecived()">
-        <ion-card-header>
-          <ion-card-title>
-            <ion-icon name="checkmark-circle-outline" class="large-icon"></ion-icon>
-            Total Help Received
-          </ion-card-title>
-        </ion-card-header>
-        <ion-card-content class="amount-text text-center">
-          {{ totalCompletedPayments | currency:'INR' }}
-        </ion-card-content>
-      </ion-card>
-  
-      <ion-card class="custom-card give-help" (click)="navigateToActive()">
-        <ion-card-header>
-          <ion-card-title>
-            <ion-icon name="checkmark-circle-outline" class="large-icon"></ion-icon>
-            Total Help Given
-          </ion-card-title>
-        </ion-card-header>
-        <ion-card-content class="amount-text text-center">
-          {{ totalCompletedPaymentsGive | currency:'INR' }}
-        </ion-card-content>
-      </ion-card>
-  
-      <ion-card class="custom-card total-team" (click)="navigateToLevelWiseChart()">
-        <ion-card-header>
-          <ion-card-title>
-            <ion-icon name="checkmark-circle-outline" class="large-icon"></ion-icon>
-            Total Team
-          </ion-card-title>
-        </ion-card-header>
-        <ion-card-content class="amount-text text-center">
-          {{ Total_member }}
-        </ion-card-content>
-      </ion-card>
+      </ion-card> -->
     </div>
-  
+
+    <!-- Share Card Component -->
     <app-share-card></app-share-card>
-  </ion-content>
+  </div>
+</ion-content>

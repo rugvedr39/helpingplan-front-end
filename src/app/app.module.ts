@@ -9,8 +9,8 @@ import { AppRoutingModule } from "./app-routing.module";
 import { HttpClientModule } from "@angular/common/http";
 import { ReactiveFormsModule } from "@angular/forms";
 import { BottomNavBarComponent } from "./bottom-nav-bar/bottom-nav-bar.component";
-import { ShareCardComponent } from "./share-card/share-card.component";
 import { UserDetailsModalComponent } from "./user-details-modal/user-details-modal.component";
+import { CommonModule } from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -19,6 +19,7 @@ import { UserDetailsModalComponent } from "./user-details-modal/user-details-mod
     UserDetailsModalComponent,
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,

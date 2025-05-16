@@ -1,76 +1,75 @@
-<ion-header>
-    <ion-toolbar>
-        <ion-title>Login</ion-title>
+<ion-header [translucent]="true">
+    <ion-toolbar color="primary">
+        <ion-title>Welcome Back</ion-title>
     </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <ion-card class="shadow-lg p-3 mb-5 bg-body rounded">
-                    <ion-card-header>
-                        <ion-card-title class="text-center mb-4"
-                            >Login</ion-card-title
-                        >
-                    </ion-card-header>
-                    <ion-card-content>
-                        <form
-                            [formGroup]="loginForm"
-                            (ngSubmit)="login()"
-                            novalidate
-                        >
-                            <ion-item>
-                                <ion-label position="floating"
-                                    >Username</ion-label
-                                >
-                                <ion-input
-                                    type="text"
-                                    formControlName="username"
-                                ></ion-input>
-                            </ion-item>
-                            <ion-text
-                                color="danger"
-                                *ngIf="loginForm.get('username')?.errors?.['required']"
-                            >
-                                Username is required
-                            </ion-text>
+<ion-content [fullscreen]="true" class="ion-padding">
+    <div class="login-container">
+        <ion-card class="login-card">
+            <ion-card-header class="ion-text-center">
+                <!-- <ion-img src="assets/icon/logo.svg" class="login-logo" alt="App Logo" *ngIf="!darkMode"></ion-img> -->
+                <!-- <ion-img src="assets/icon/logo-dark.svg" class="login-logo" alt="App Logo" *ngIf="darkMode"></ion-img> -->
+                <ion-card-title class="login-title">Sign In</ion-card-title>
+                <ion-card-subtitle>Access your account</ion-card-subtitle>
+            </ion-card-header>
 
-                            <ion-item>
-                                <ion-label position="floating"
-                                    >Password</ion-label
-                                >
-                                <ion-input
-                                    type="password"
-                                    formControlName="password"
-                                ></ion-input>
-                            </ion-item>
-                            <ion-text
-                                color="danger"
-                                *ngIf="loginForm.get('password')?.errors?.['required']"
-                            >
-                                Password is required
-                            </ion-text>
+            <ion-card-content>
+                <form [formGroup]="loginForm" (ngSubmit)="login()" novalidate>
+                    <ion-list lines="none">
+                        <!-- Username Field -->
+                        <ion-item class="ion-margin-bottom" fill="outline" [class.ion-invalid]="loginForm.get('username')?.invalid && (loginForm.get('username')?.dirty || loginForm.get('username')?.touched)">
+                            <ion-label position="floating">
+                                <ion-icon name="person-outline" slot="start"></ion-icon>
+                                Username or Email
+                            </ion-label>
+                            <ion-input type="text" formControlName="username" required></ion-input>
+                            <ion-note slot="error" *ngIf="loginForm.get('username')?.errors?.['required']">
+                                Please enter your username or email
+                            </ion-note>
+                        </ion-item>
 
-                            <div class="ion-padding">
-                                <ion-button
-                                    type="submit"
-                                    expand="block"
-                                    [disabled]="!loginForm.valid"
-                                    >Login</ion-button
-                                >
-                                <ion-button
-                                    type="button"
-                                    expand="block"
-                                    fill="outline"
-                                    routerLink="/signup"
-                                    >Signup</ion-button
-                                >
-                            </div>
-                        </form>
-                    </ion-card-content>
-                </ion-card>
-            </div>
-        </div>
+                        <!-- Password Field -->
+                        <ion-item class="ion-margin-bottom" fill="outline" [class.ion-invalid]="loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)">
+                            <ion-label position="floating">
+                                <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
+                                Password
+                            </ion-label>
+                            <ion-input type="password" formControlName="password" required></ion-input>
+                            <ion-note slot="error" *ngIf="loginForm.get('password')?.errors?.['required']">
+                                Please enter your password
+                            </ion-note>
+                        </ion-item>
+
+                        <!-- Remember Me & Forgot Password -->
+                        <div class="ion-margin-bottom ion-text-center ion-justify-content-between" style="display: flex;">
+                            <!-- <ion-checkbox labelPlacement="end">Remember me</ion-checkbox> -->
+                            <!-- <ion-button fill="clear" size="small" routerLink="/forgot-password">
+                                Forgot password?
+                            </ion-button> -->
+                        </div>
+
+                        <!-- Login Button -->
+                        <ion-button 
+                            type="submit" 
+                            expand="block" 
+                            shape="round" 
+                            [disabled]="!loginForm.valid"
+                            class="ion-margin-top login-button">
+                            Sign In
+                            <ion-icon slot="end" name="arrow-forward"></ion-icon>
+                        </ion-button>
+
+                        <!-- Signup Link -->
+                        <div class="ion-text-center ion-margin-top">
+                            <span>Don't have an account? </span>
+                            <ion-button fill="clear" size="small" routerLink="/signup">
+                                Sign up
+                            </ion-button>
+                        </div>
+                    </ion-list>
+                </form>
+            </ion-card-content>
+        </ion-card>
     </div>
 </ion-content>
